@@ -1,8 +1,8 @@
 var app = angular.module('visaexpress', ['ngCookies']);
 
-app.controller('LoginCtrl',LoginCtrl);
-LoginCtrl.$inject = ['$window', '$scope', '$location', 'AuthenticationService'];
-function LoginCtrl($window, $scope, $location, AuthenticationService){
+app.controller('AdminLoginCtrl',AdminLoginCtrl);
+AdminLoginCtrl.$inject = ['$window', '$scope', '$location', 'AuthenticationService'];
+function AdminLoginCtrl($window, $scope, $location, AuthenticationService){
   console.log("called");
   $scope.vm = {};
   var vm = this;
@@ -14,10 +14,10 @@ function LoginCtrl($window, $scope, $location, AuthenticationService){
 $scope.login = function login(dat){
     console.log("called");
   vm.dataLoading = true;
-   AuthenticationService.Login(dat.Username, dat.Password, function(response){
-      if(response.id){
+   AuthenticationService.AdminLogin(dat.Username, dat.Password, function(response){
+      if(response.Auth == 'true'){
         console.log("true");
-        AuthenticationService.SetCredent(vm.Username, vm.Password, response.id);
+        AuthenticationService.SetCredent(response.Username, vm.Password, response.id);
           $scope.hide = "false";
         $window.location = '/admin';
       } else{

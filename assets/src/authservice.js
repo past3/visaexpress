@@ -4,13 +4,23 @@ function AuthenticationService($http, $cookieStore, $rootScope, $timeout) {
   var service = {};
 $rootScope.bl = false;
   service.Login = Login;
+  service.AdminLogin = AdminLogin;
   service.SetCredent = SetCredent;
   service.ClearCredentials = ClearCredentials;
   return service;
 
   function Login (username, password, callback){
-console.log(username);
-    $http.post('/adminlogin', { Username: username, Password: password })
+//console.log(username);
+    $http.post('/auth', { Username: username, Password: password })
+    .success(function (response) {
+                console.log(response);
+                  callback(response);
+              });
+  };
+
+  function AdminLogin (username, password, callback){
+//console.log(username);
+    $http.post('/authAdmin', { Username: username, Password: password })
     .success(function (response) {
                 console.log(response);
                   callback(response);

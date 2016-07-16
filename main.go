@@ -11,6 +11,16 @@ import (
 	"github.com/rs/cors"
 )
 
+const (
+	//Cost is the, well, cost of the bcrypt encryption used for storing user
+	//passwords in the database. It determines the amount of processing power to
+	// be used while hashing and saalting the password. The higher, the cost,
+	//the more secure the password hash, and also the more cpu cycles used for
+	//password related processes like comparing hasshes during authentication
+	//or even hashing a new password.
+	Cost int = 5
+)
+
 // Router struct would carry the httprouter instance, so its methods could be verwritten and replaced with methds with wraphandler
 type Router struct {
 	*httprouter.Router
@@ -49,43 +59,28 @@ func wrapHandler(h http.Handler) httprouter.Handle {
 }
 
 //Conf nbfmjh
-type Conf struct {
-	xx string
-	xy string
-}
-
-var (
-	config Conf
-
-	//IMAGE_DIR = "./"
-)
 
 func init() {
-
-	MONGOSERVER := os.Getenv("MONGOLAB_URI")
-	MONGODB := os.Getenv("MONGODB")
-	if MONGOSERVER == "" {
-		log.Println("No mongo server address set, resulting to default address")
-		MONGOSERVER = "mongodb://localhost"
-		MONGODB = "visaexpress"
-		//mongodb://localhost
-	}
-	config = Conf{
-		xy: MONGODB,
-		xx: MONGOSERVER,
-	}
-
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 }
 
 func main() {
+	config := generateConfig()
+	defer config.MongoSession.Close()
 	commonHandlers := alice.New(context.ClearHandler, loggingHandler, recoverHandler)
 	router := NewRouter()
 	router.ServeFiles("/assets/*filepath", http.Dir("assets"))
-	//router.ServeFiles("/admin/*filepath", http.Dir("admin"))
+	router.ServeFiles("/admin/*filepath", http.Dir("admin"))
+	//Admin routes
 	router.Get("/admin", commonHandlers.ThenFunc(FrontAdminHandler))
 	router.Get("/login", commonHandlers.ThenFunc(LoginAdmin))
-	log.Println(config.xx)
+	router.Get("/getAdminUsers", commonHandlers.ThenFunc(config.GetAdminUsersHandler))
+	router.Post("/newAdmin", commonHandlers.ThenFunc(config.CreateAdminHandler))
+	router.Post("/authAdmin", commonHandlers.ThenFunc(config.AdminAuthHandler))
+	//User Routes
+	router.Get("/getUsers", commonHandlers.ThenFunc(config.GetUsersHandler))
+	router.Post("/newuser", commonHandlers.ThenFunc(config.CreateHandler))
+	router.Post("/auth", commonHandlers.ThenFunc(config.AuthHandler))
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
 		log.Println("No Global port has been defined, using default")

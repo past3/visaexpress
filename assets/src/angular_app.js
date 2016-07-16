@@ -1,7 +1,11 @@
 var app = angular.module('visaexpress', ['ngRoute', 'ngCookies', 'ui-notification', 'ngMaterial']);
 app.config(['$routeProvider', function($routeProvider){
 	$routeProvider.when('/', {
-		template:'<p>Works</p>'
+		controller:'MainCtrl',
+		templateUrl:'/admin/partials/users.html'
+	}).when('/logout', {
+		controller:'LogCtrl',
+		template:'<p>Logginout<p/>'
 	});
 }]);
 app.run(run);
