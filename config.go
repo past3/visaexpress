@@ -63,7 +63,7 @@ func generateConfig() (config Config) {
 	AWSBucket := os.Getenv("AWSBucket")
 	if AWSBucket == "" {
 		log.Println("No AWSBucket set, resulting to default")
-		AWSBucket = "ednang"
+		AWSBucket = "yellowpagesng"
 	}
 	log.Println("AWS Bucket is ", AWSBucket)
 
@@ -77,7 +77,7 @@ func generateConfig() (config Config) {
 
 	config.S3Bucket = s3bucket
 
-	config.BucketName = "ednang"
+	config.BucketName = "yellowpagesng"
 
 	config.Public, err = ioutil.ReadFile("app.rsa.pub")
 	if err != nil {
