@@ -3,6 +3,9 @@ app.config(['$routeProvider', function($routeProvider){
 	$routeProvider.when('/', {
 		controller:'MainCtrl',
 		templateUrl:'/admin/partials/users.html'
+	}).when('/dashboard', {
+		templateUrl:'/admin/partials/dashboard.html'
+
 	}).when('/logout', {
 		controller:'LogCtrl',
 		template:'<p>Logginout<p/>'
