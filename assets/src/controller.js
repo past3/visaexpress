@@ -42,6 +42,17 @@ $scope.add = function(data){
  });
 });
 
+app.controller("DashCtrl", function($scope, $http){
+  $scope.res = {};
+  $scope.result = {};
+  $http.get('/getLetters').then(function(res){
+    console.log(res.data[0]);
+    $scope.res = res.data;
+    $scope.result = res.data[0];
+  }, function(){
+
+  });
+});
 app.controller("EditDashCtrl", function($scope, $http, $rootScope, Notification){
   $scope.result = {};
   $http.get('/getLetters').then(function(res){
@@ -51,11 +62,15 @@ app.controller("EditDashCtrl", function($scope, $http, $rootScope, Notification)
 
   });
   $scope.add = function(data){
+    $scope.show = "show";
     data.Image = $scope.f;
+    data.BackImage = $scope.ff;
     $http.post('/upload', data).then(function(){
+      $scope.show = "hide";
         Notification({message: 'Success', title: 'Newsletter Uploaded'});
     }, function(err){
         Notification.error("Error Adding Data");
+        $scope.show = "hide";
     });
 
   };
@@ -67,5 +82,15 @@ app.controller("EditDashCtrl", function($scope, $http, $rootScope, Notification)
       });
     };
     reader.readAsDataURL(image);
-  }
+  };
+  $scope.newLetter2 = function(image){
+    var reader = new FileReader();
+    reader.onload = function(u){
+      $scope.$apply(function($scope){
+        $scope.ff = u.target.result;
+      });
+    };
+    reader.readAsDataURL(image);
+  };
+
 });

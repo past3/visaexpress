@@ -19,6 +19,7 @@ type Newsletter struct {
 	Title       string        `bson:"title"`
 	Description string        `bson:"description"`
 	Image       string        `bson:"image"`
+	BackImage   string        `bson:"backimage"`
 	LetterNo    string        `bson:"letterno"`
 }
 
@@ -36,11 +37,13 @@ func randSeq(n int) string {
 }
 
 func (r *NewsletterRepo) UploadLetter(nl Newsletter) error {
-	err := r.coll.Upsert(bson.M{"letterno": nl.LetterNo}, nl)
+	n, err := r.coll.Upsert(bson.M{"letterno": nl.LetterNo}, nl)
+
 	if err != nil {
-		log.Println(err)
+		log.Println(n)
 		return err
 	}
+	return err
 }
 
 func (r *NewsletterRepo) GetLetters() ([]Newsletter, error) {
@@ -71,7 +74,7 @@ func (c *Config) GetLetterHandler(w http.ResponseWriter, r *http.Request) {
 func (c *Config) UploadHandler(w http.ResponseWriter, r *http.Request) {
 	data := Newsletter{}
 	u := NewsletterRepo{c.MongoSession.DB(c.MONGODB).C("newsletter")}
-	err := json.NewDecoder(r.body).Decode(&data)
+	err := json.NewDecoder(r.Body).Decode(&data)
 	if err != nil {
 		log.Println(err)
 	}
@@ -89,6 +92,21 @@ func (c *Config) UploadHandler(w http.ResponseWriter, r *http.Request) {
 			log.Println(err)
 		}
 		data.Image = bucket.URL(name)
+		if data.BackImage != "" {
+			bucket := c.S3Bucket
+			byt, err = base64.StdEncoding.DecodeString(strings.Split(data.BackImage, "base64,")[1])
+			if err != nil {
+				log.Println(err)
+			}
+			meta := strings.Split(data.BackImage, "base64,")[0]
+			newmeta := strings.Replace(strings.Replace(meta, "data:", "", -1), ";", "", -1)
+			name := randSeq(10) + data.LetterNo + "2"
+			err = bucket.Put(name, byt, newmeta, s3.PublicReadWrite)
+			if err != nil {
+				log.Println(err)
+			}
+			data.BackImage = bucket.URL(name)
+		}
 		err = u.UploadLetter(data)
 		if err != nil {
 			log.Println(err)

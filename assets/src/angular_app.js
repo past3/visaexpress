@@ -4,16 +4,29 @@ app.config(['$routeProvider', function($routeProvider){
 		controller:'MainCtrl',
 		templateUrl:'/admin/partials/users.html'
 	}).when('/dashboard', {
-		templateUrl:'/admin/partials/dashboard.html'
-
+		templateUrl:'/admin/partials/dashboard.html',
+		controller:'DashCtrl'
 	}).when('/edit', {
-		templateUrl:'/admin/partials/edit.html'
+		templateUrl:'/admin/partials/edit.html',
+		controller:'EditDashCtrl'
 	}).when('/logout', {
 		controller:'LogCtrl',
 		template:'<p>Logginout<p/>'
 	});
 }]);
 app.run(run);
+app.directive('a', function() {
+    return {
+        restrict: 'E',
+        link: function(scope, elem, attrs) {
+            if(attrs.ngClick || attrs.href === '' || attrs.href === '#'){
+                elem.on('click', function(e){
+                    e.preventDefault();
+                });
+            }
+        }
+   };
+});
 
 run.$inject = ['$window','$rootScope', '$location', '$cookieStore', '$http'];
 function run ($window, $rootScope, $location, $cookieStore, $http){
