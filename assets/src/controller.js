@@ -26,6 +26,7 @@ app.controller("MainCtrl", function($scope, $http, $rootScope, $cookieStore){
 $scope.logged = $cookieStore.get("globals").currentUse.username;
 $scope.result = {};
 $scope.user = "";
+$scope.newerScope = [];
 $scope.add = function(data){
   $http.post('/newuser',data).then(function(res){
     $scope.result.push(data);
@@ -34,12 +35,38 @@ $scope.add = function(data){
 
   });
 };
- $http.get('/getUsers').then(function(res){
+ $http.get('/getUsers?page=1').then(function(res){
    console.log(res.data);
-   $scope.result = res.data;
+   $scope.result = res.data.Data;
+   $scope.newScope = res.data.Pag.Pages;
+   for(var i =0; i < $scope.newScope.length; i++){
+     var tmp = {"data": i+1};
+     $scope.newerScope.push(tmp);
+   }
+
  }, function(err){
    console.log("err");
  });
+
+ $scope.sends = function(data){
+ $scope.pages = {};
+ $scope.newScope = {};
+ $scope.newerScope = [];
+
+ 	$http.get('/getUsers?page='+data).success(function(data, status){
+ 		$scope.result = data.Data;
+ 		$scope.pages = data;
+ 		console.log(data)
+ 		$scope.newScope = data.Pag.Pages;
+ 		for(var i =0; i < $scope.newScope.length; i++){
+ 			var tmp = {"data": i+1};
+ 			$scope.newerScope.push(tmp);
+ 		}
+ //$scope.$apply();
+ 	});
+ };
+
+
 });
 
 app.controller("DashCtrl", function($scope, $http){
@@ -48,7 +75,7 @@ app.controller("DashCtrl", function($scope, $http){
   $http.get('/getLetters').then(function(res){
     console.log(res.data[0]);
     $scope.res = res.data;
-    $scope.result = res.data[0];
+    $scope.result = res.data;
   }, function(){
 
   });

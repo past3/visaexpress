@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"strconv"
 
 	//	"github.com/gorilla/context"
 
@@ -25,6 +26,11 @@ type Member struct {
 	Pass       []byte `json:"-" bson:"pass"`
 	Auth       string
 	Image      string
+}
+
+type NewView struct {
+	Data []Member
+	Pag  Page
 }
 
 type MemberRepo struct {
@@ -59,14 +65,20 @@ func (r *MemberRepo) Auth(temp Member) (Member, error) {
 
 }
 
-func (r *MemberRepo) GetUsers() ([]Member, error) {
+func (r *MemberRepo) GetUsers(count int, page int, perpage int) (NewView, error) {
 	member := []Member{}
-	err := r.coll.Find(bson.M{}).All(&member)
+	newV := NewView{}
+	q := r.coll.Find(bson.M{})
+	n, _ := q.Count()
+	Page := SearchPagination(n, page, perpage)
+	err := q.Limit(perpage).Skip(Page.Skip).All(&member)
 	if err != nil {
 		log.Println(err)
-		return member, err
+		return newV, err
 	}
-	return member, nil
+	newV.Data = member
+	newV.Pag = Page
+	return newV, nil
 }
 
 func (c *Config) CreateHandler(w http.ResponseWriter, r *http.Request) {
@@ -97,7 +109,11 @@ func (c *Config) AuthHandler(w http.ResponseWriter, r *http.Request) {
 
 func (c *Config) GetUsersHandler(w http.ResponseWriter, r *http.Request) {
 	u := MemberRepo{c.MongoSession.DB(c.MONGODB).C("member")}
-	data, _ := u.GetUsers()
+	//id := r.URL.Query().Get("q")
+	tmp := r.URL.Query().Get("page")
+	page, _ := strconv.Atoi(tmp)
+	//data, _ := RenderView(id, 50, page, 50)
+	data, _ := u.GetUsers(50, page, 50)
 	res, err := json.Marshal(data)
 	if err != nil {
 		log.Println(err)
