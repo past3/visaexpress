@@ -9,6 +9,8 @@ app.config(['$routeProvider', function($routeProvider){
 	}).when('/edit', {
 		templateUrl:'/admin/partials/edit.html',
 		controller:'EditDashCtrl'
+	}).when('/mail', {
+		templateUrl:'/admin/partials/mail.html'
 	}).when('/logout', {
 		controller:'LogCtrl',
 		template:'<p>Logginout<p/>'
