@@ -71,6 +71,7 @@ func main() {
 	router := NewRouter()
 	router.ServeFiles("/assets/*filepath", http.Dir("assets"))
 	router.ServeFiles("/admin/*filepath", http.Dir("admin"))
+	router.ServeFiles("/client/*filepath", http.Dir("client"))
 	//Admin routes
 	router.Get("/admin", commonHandlers.ThenFunc(FrontAdminHandler))
 	router.Get("/login", commonHandlers.ThenFunc(LoginAdmin))
@@ -79,10 +80,16 @@ func main() {
 	router.Post("/authAdmin", commonHandlers.ThenFunc(config.AdminAuthHandler))
 	router.Post("/upload", commonHandlers.ThenFunc(config.UploadHandler))
 	router.Get("/getLetters", commonHandlers.ThenFunc(config.GetLetterHandler))
+	//client Routes
+	router.Get("/memberlogin", commonHandlers.ThenFunc(LoginClient))
+	router.Get("/member", commonHandlers.ThenFunc(ClientHandler))
 	//User Routes
 	router.Get("/getUsers", commonHandlers.ThenFunc(config.GetUsersHandler))
 	router.Post("/newuser", commonHandlers.ThenFunc(config.CreateHandler))
 	router.Post("/auth", commonHandlers.ThenFunc(config.AuthHandler))
+	router.Post("/NewMessage", commonHandlers.ThenFunc(config.NewMessageHandler))
+	router.Get("/inbox", commonHandlers.ThenFunc(config.GetInboxHandler))
+	router.Get("/outbox", commonHandlers.ThenFunc(config.GetOutboxHandler))
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
 		log.Println("No Global port has been defined, using default")

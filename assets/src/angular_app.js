@@ -1,16 +1,17 @@
 var app = angular.module('visaexpress', ['ngRoute', 'ngCookies', 'ui-notification', 'ngMaterial']);
 app.config(['$routeProvider', function($routeProvider){
-	$routeProvider.when('/', {
+	$routeProvider.when('/member', {
 		controller:'MainCtrl',
 		templateUrl:'/admin/partials/users.html'
-	}).when('/dashboard', {
+	}).when('/', {
 		templateUrl:'/admin/partials/dashboard.html',
 		controller:'DashCtrl'
 	}).when('/edit', {
 		templateUrl:'/admin/partials/edit.html',
 		controller:'EditDashCtrl'
-	}).when('/mail', {
-		templateUrl:'/admin/partials/mail.html'
+	}).when('/Admin', {
+		controller:'adminCtrl',
+		templateUrl:'/admin/partials/adminUsers.html'
 	}).when('/logout', {
 		controller:'LogCtrl',
 		template:'<p>Logginout<p/>'
@@ -33,12 +34,12 @@ app.directive('a', function() {
 run.$inject = ['$window','$rootScope', '$location', '$cookieStore', '$http'];
 function run ($window, $rootScope, $location, $cookieStore, $http){
 	$rootScope.globals = $cookieStore.get('globals') || {};
-	if($rootScope.globals.currentUse){
-		$http.defaults.headers.common['Authorization'] = 'Basic' + $rootScope.globals.currentUse.authdata;
+	if($rootScope.globals.Admin){
+		$http.defaults.headers.common['Authorization'] = 'Basic' + $rootScope.globals.Admin.authdata;
 	}
 	$rootScope.$on('$locationChangeStart', function(event, next, current){
 		var restrictedPage = $.inArray($location.path(), ['/login']) === -1;
-		var loggedin = $rootScope.globals.currentUse;
+		var loggedin = $rootScope.globals.Admin;
 		if(!loggedin){
 			console.log("cam");
 			/*var landingUrl = "http://localhost:8080/admin"; //URL complete

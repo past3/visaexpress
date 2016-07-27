@@ -1,8 +1,8 @@
 var app = angular.module("visaexpress");
 app.controller("GeneralCtrl", function(AuthenticationService, $scope, $http, $rootScope, $cookieStore){
-//console.log($cookieStore.get("globals").currentUse.username);
+//console.log($cookieStore.get("globals").Admin.username);
 $scope.logged = "user";
-$scope.logged = $cookieStore.get("globals").currentUse.username;
+$scope.logged = $cookieStore.get("globals").Admin.username;
 $scope.result = {};
 $scope.user = "";
 $scope.logout = function(){
@@ -13,7 +13,7 @@ $scope.logout = function(){
 });
 
 app.controller("LogCtrl", function($window, AuthenticationService, $scope, $http, $rootScope, $cookieStore){
-//console.log($cookieStore.get("globals").currentUse.username);
+//console.log($cookieStore.get("globals").Admin.username);
 console.log("try");
 AuthenticationService.ClearCredentials();
 $window.location = '/login';
@@ -22,8 +22,8 @@ $window.location = '/login';
 
 
 app.controller("MainCtrl", function($scope, $http, $rootScope, $cookieStore){
-//console.log($cookieStore.get("globals").currentUse.username);
-$scope.logged = $cookieStore.get("globals").currentUse.username;
+//console.log($cookieStore.get("globals").Admin.username);
+$scope.logged = $cookieStore.get("globals").Admin.username;
 $scope.result = {};
 $scope.user = "";
 $scope.newerScope = [];
@@ -65,6 +65,54 @@ $scope.add = function(data){
  //$scope.$apply();
  	});
  };
+
+
+});
+
+app.controller("adminCtrl", function($scope, $http, $cookieStore, $rootScope){
+
+  $scope.logged = $cookieStore.get("globals").Admin.username;
+  $scope.result = {};
+  $scope.user = "";
+  $scope.newerScope = [];
+  $scope.add = function(data){
+    $http.post('/newAdmin',data).then(function(res){
+      $scope.result.push(data);
+      $scope.user = "";
+    }, function(err){
+
+    });
+  };
+   $http.get('/getAdminUsers?page=1').then(function(res){
+     console.log(res.data);
+     $scope.result = res.data.Data;
+     $scope.newScope = res.data.Pag.Pages;
+     for(var i =0; i < $scope.newScope.length; i++){
+       var tmp = {"data": i+1};
+       $scope.newerScope.push(tmp);
+     }
+
+   }, function(err){
+     console.log("err");
+   });
+
+   $scope.sends = function(data){
+   $scope.pages = {};
+   $scope.newScope = {};
+   $scope.newerScope = [];
+
+   	$http.get('/getAdminUsers?page='+data).success(function(data, status){
+   		$scope.result = data.Data;
+   		$scope.pages = data;
+   		console.log(data)
+   		$scope.newScope = data.Pag.Pages;
+   		for(var i =0; i < $scope.newScope.length; i++){
+   			var tmp = {"data": i+1};
+   			$scope.newerScope.push(tmp);
+   		}
+   //$scope.$apply();
+   	});
+   };
 
 
 });

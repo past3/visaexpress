@@ -17,6 +17,8 @@ type Message struct {
 	To      string        `bson:"to"`
 	Content string        `bson:"content"`
 	Title   string        `bson:"title"`
+	Name    string        `bson:"name"`
+	Fname   string        `bson:"fname"`
 }
 
 type Views struct {

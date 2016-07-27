@@ -6,6 +6,7 @@ $rootScope.bl = false;
   service.Login = Login;
   service.AdminLogin = AdminLogin;
   service.SetCredent = SetCredent;
+  service.SetAdmin = SetAdmin;
   service.ClearCredentials = ClearCredentials;
   return service;
 
@@ -41,6 +42,22 @@ $rootScope.bl = false;
     $http.defaults.headers.common['Authorization'] = 'Basic' + authdata;
     $cookieStore.put('globals', $rootScope.globals);
   }
+
+  function SetAdmin(username, password, id){
+    var authdata = Base64.encode(username + ':' + password);
+    $rootScope.globals = {
+      Admin: {
+        username: username,
+        authdata: authdata,
+        id: id
+      }
+    };
+    $rootScope.bl = true;
+  $http.defaults.headers.common['Authorization'] = 'Basic' + authdata;
+  $cookieStore.put('globals', $rootScope.globals);
+}
+
+
   function ClearCredentials(){
     $rootScope.globals = {};
     $cookieStore.remove('globals');
