@@ -1,0 +1,76 @@
+{
+	"ImportPath": "github.com/tonyalaribe/visaexpress",
+	"GoVersion": "go1.6",
+	"GodepVersion": "v74",
+	"Deps": [
+		{
+			"ImportPath": "github.com/gorilla/context",
+			"Comment": "v1.1-4-gaed02d1",
+			"Rev": "aed02d124ae4a0e94fea4541c8effd05bf0c8296"
+		},
+		{
+			"ImportPath": "github.com/julienschmidt/httprouter",
+			"Comment": "v1.1-31-gfb79d6a",
+			"Rev": "fb79d6a91d3e4a9ecb6d945b218d78fc0d9b1939"
+		},
+		{
+			"ImportPath": "github.com/justinas/alice",
+			"Comment": "1.0.0-4-g8f06f31",
+			"Rev": "8f06f3153579369bb91f084f39f86f5d5030d4dc"
+		},
+		{
+			"ImportPath": "github.com/mitchellh/goamz/aws",
+			"Rev": "caaaea8b30ee15616494ee68abd5d8ebbbef05cf"
+		},
+		{
+			"ImportPath": "github.com/mitchellh/goamz/s3",
+			"Rev": "caaaea8b30ee15616494ee68abd5d8ebbbef05cf"
+		},
+		{
+			"ImportPath": "github.com/rs/cors",
+			"Comment": "v1.0",
+			"Rev": "a62a804a8a009876ca59105f7899938a1349f4b3"
+		},
+		{
+			"ImportPath": "github.com/rs/xhandler",
+			"Comment": "v1.0-1-ged27b6f",
+			"Rev": "ed27b6fd65218132ee50cd95f38474a3d8a2cd12"
+		},
+		{
+			"ImportPath": "github.com/vaughan0/go-ini",
+			"Rev": "a98ad7ee00ec53921f08832bc06ecf7fd600e6a1"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/bcrypt",
+			"Rev": "911fafb28f4ee7c7bd483539a6c96190bbbccc3f"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/blowfish",
+			"Rev": "911fafb28f4ee7c7bd483539a6c96190bbbccc3f"
+		},
+		{
+			"ImportPath": "golang.org/x/net/context",
+			"Rev": "7864c9eef811cd4e2387a4d17eaf985e412b5032"
+		},
+		{
+			"ImportPath": "gopkg.in/mgo.v2",
+			"Comment": "r2016.02.04-3-g29cc868",
+			"Rev": "29cc868a5ca65f401ff318143f9408d02f4799cc"
+		},
+		{
+			"ImportPath": "gopkg.in/mgo.v2/bson",
+			"Comment": "r2016.02.04-3-g29cc868",
+			"Rev": "29cc868a5ca65f401ff318143f9408d02f4799cc"
+		},
+		{
+			"ImportPath": "gopkg.in/mgo.v2/internal/sasl",
+			"Comment": "r2016.02.04-3-g29cc868",
+			"Rev": "29cc868a5ca65f401ff318143f9408d02f4799cc"
+		},
+		{
+			"ImportPath": "gopkg.in/mgo.v2/internal/scram",
+			"Comment": "r2016.02.04-3-g29cc868",
+			"Rev": "29cc868a5ca65f401ff318143f9408d02f4799cc"
+		}
+	]
+}

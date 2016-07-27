@@ -90,6 +90,25 @@ func main() {
 	router.Post("/NewMessage", commonHandlers.ThenFunc(config.NewMessageHandler))
 	router.Get("/inbox", commonHandlers.ThenFunc(config.GetInboxHandler))
 	router.Get("/outbox", commonHandlers.ThenFunc(config.GetOutboxHandler))
+
+	router.HandlerFunc("GET", "/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./frontend/favicon.ico")
+	})
+	router.HandlerFunc("GET", "/contact.html", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./frontend/contact.html")
+	})
+	router.HandlerFunc("GET", "/gallery.html", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./frontend/gallery.html")
+	})
+	router.HandlerFunc("GET", "/index.html", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./frontend/index.html")
+	})
+	router.HandlerFunc("GET", "/", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./frontend/index.html")
+	})
+
+	router.NotFound = http.FileServer(http.Dir("./assets/"))
+
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
 		log.Println("No Global port has been defined, using default")
