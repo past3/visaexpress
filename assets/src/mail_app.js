@@ -118,10 +118,13 @@ app.controller('MainCtrl', function($scope, $http, $cookieStore){
 		console.log(res.data);
 		$scope.result = res.data.Data;
 		$scope.newScope = res.data.Pag.Pages;
-		for(var i =0; i < $scope.newScope.length; i++){
-			var tmp = {"data": i+1};
-			$scope.newerScope.push(tmp);
-		}
+    if($scope.newScope){
+      for(var i =0; i < $scope.newScope.length; i++){
+  			var tmp = {"data": i+1};
+  			$scope.newerScope.push(tmp);
+  		}  
+    }
+
 
 	}, function(err){
 		console.log("err");

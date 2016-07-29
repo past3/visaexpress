@@ -18,9 +18,11 @@ type Newsletter struct {
 	ID          bson.ObjectId `json:"id,omitempty" bson:"_id,omitempty"`
 	Title       string        `bson:"title"`
 	Description string        `bson:"description"`
+	Date        string        `bson:"date"`
 	Image       string        `bson:"image"`
 	BackImage   string        `bson:"backimage"`
 	LetterNo    string        `bson:"letterno"`
+	Type        string        `bson:"type"`
 }
 
 type NewsletterRepo struct {
@@ -37,10 +39,10 @@ func randSeq(n int) string {
 }
 
 func (r *NewsletterRepo) UploadLetter(nl Newsletter) error {
-	n, err := r.coll.Upsert(bson.M{"letterno": nl.LetterNo}, nl)
+	err := r.coll.Insert(nl)
 
 	if err != nil {
-		log.Println(n)
+		log.Println(err)
 		return err
 	}
 	return err

@@ -28,12 +28,22 @@ $scope.result = {};
 $scope.user = "";
 $scope.newerScope = [];
 $scope.add = function(data){
+  data.Image = $scope.f;
   $http.post('/newuser',data).then(function(res){
     $scope.result.push(data);
     $scope.user = "";
   }, function(err){
 
   });
+};
+$scope.newLetter = function(image){
+  var reader = new FileReader();
+  reader.onload = function(u){
+    $scope.$apply(function($scope){
+      $scope.f = u.target.result;
+    });
+  };
+  reader.readAsDataURL(image);
 };
  $http.get('/getUsers?page=1').then(function(res){
    console.log(res.data);
@@ -121,7 +131,7 @@ app.controller("DashCtrl", function($scope, $http){
   $scope.res = {};
   $scope.result = {};
   $http.get('/getLetters').then(function(res){
-    console.log(res.data[0]);
+    console.log(res.data);
     $scope.res = res.data;
     $scope.result = res.data;
   }, function(){
@@ -130,6 +140,7 @@ app.controller("DashCtrl", function($scope, $http){
 });
 app.controller("EditDashCtrl", function($scope, $http, $rootScope, Notification){
   $scope.result = {};
+  var image = "0";
   $http.get('/getLetters').then(function(res){
     console.log(res);
     $scope.result = res.data;
@@ -139,6 +150,7 @@ app.controller("EditDashCtrl", function($scope, $http, $rootScope, Notification)
   $scope.add = function(data){
     $scope.show = "show";
     data.Image = $scope.f;
+    data.type = image;
     data.BackImage = $scope.ff;
     $http.post('/upload', data).then(function(){
       $scope.show = "hide";
@@ -154,6 +166,7 @@ app.controller("EditDashCtrl", function($scope, $http, $rootScope, Notification)
     reader.onload = function(u){
       $scope.$apply(function($scope){
         $scope.f = u.target.result;
+        image = "1";
       });
     };
     reader.readAsDataURL(image);

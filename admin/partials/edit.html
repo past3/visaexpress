@@ -2,13 +2,7 @@
             <div class="container-fluid container-fixed-lg sm-p-l-20 sm-p-r-20">
               <div class="inner">
                 <!-- START BREADCRUMB -->
-                <ul class="breadcrumb">
-                  <li>
-                    <a href="#">Forms</a>
-                  </li>
-                  <li><a href="#" class="active">Form Elements</a>
-                  </li>
-                </ul>
+                
                 <!-- END BREADCRUMB -->
 
               </div>
@@ -33,30 +27,27 @@
                                   <div class="col-sm-6">
                                     <div class="form-group form-group-default required">
                                       <label>Title</label>
-                                      <input type="text" class="form-control" ng-model="data.title" required>
+                                      <input type="text" class="form-control" ng-model="data.Title" required>
                                     </div>
                                   </div>
+                                </div>
+                                <div class="row">
                                   <div class="col-sm-6">
                                     <div class="form-group form-group-default">
                                       <label>Description</label>
                                       <textarea  class="form-control" ng-model="data.Description" ></textarea>
                                     </div>
                                   </div>
+                                </div>
+                                <div class="row">
                                   <div class="col-sm-6">
                                     <div class="form-group form-group-default">
-                                      <label>Options</label>
-                                      <select ng-model="data.LetterNo" >
-                                        <option></option>
-                                        <option value="1">1st Panel</option>
-                                        <option value="2">2nd Panel</option>
-                                        <option value="3">3rd Panel</option>
-                                        <option value="4">4th Panel</option>
-                                        <option value="5">5th Panel</option>
-                                        <option value="6">6th Panel</option>
-                                        <option value="7">7th Panel</option>
-                                      </select>
+                                      <label>Event Date</label>
+                                      <input type="date" class="form-control" ng-model="data.Date" required>
                                     </div>
                                   </div>
+                                </div>
+                                <div class="row">
                                   <div class="col-sm-6">
                                     <label for="exampleInputFile">Front Image</label>
                                     <input type="file" ng-model="file" class="input-lg" onchange="angular.element(this).scope().newLetter(this.files[0])" />
@@ -68,21 +59,7 @@
                                       </div>
 
                                   </div>
-
-                                  <div class="col-sm-6">
-                                    <label for="exampleInputFile">Back Image</label>
-                                    <input type="file" ng-model="file" class="input-lg" onchange="angular.element(this).scope().newLetter2(this.files[0])" />
-                                      <div >
-                                        <a class=" col-sm-2">
-                                          <img src="{{ff}}" class="img img-thumbnail" />
-                                        </a>
-                                        <div style="clear:both"></div>
-                                      </div>
-
-                                  </div>
-
-
-
+                                </div>
                                   <div class="col-md-6">
                                     <div class="form-group form-group-default">
                                       <button ng-click="add(data)">Update</button>
@@ -90,8 +67,6 @@
                                     </div>
                                   </div>
                                 </div>
-
-
                             </div>
                           </div>
                           <!-- END PANEL -->

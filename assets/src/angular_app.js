@@ -4,7 +4,7 @@ app.config(['$routeProvider', function($routeProvider){
 		controller:'MainCtrl',
 		templateUrl:'/admin/partials/users.html'
 	}).when('/', {
-		templateUrl:'/admin/partials/dashboard.html',
+		templateUrl:'/admin/partials/dash.html',
 		controller:'DashCtrl'
 	}).when('/edit', {
 		templateUrl:'/admin/partials/edit.html',

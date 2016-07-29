@@ -2,13 +2,7 @@
   <div class="container-fluid container-fixed-lg sm-p-l-20 sm-p-r-20">
     <div class="inner">
       <!-- START BREADCRUMB -->
-      <ul class="breadcrumb">
-        <li>
-          <p>Pages</p>
-        </li>
-        <li><a href="#" class="active">Barebone template</a>
-        </li>
-      </ul>
+
       <!-- END BREADCRUMB -->
       <div class="container-fluid container-fixed-lg">
                   <div class="row">
@@ -62,6 +56,16 @@
                                   </div>
                                 </div>
                                 <div class="row">
+                                    <label for="exampleInputFile">Profile Image</label>
+                                    <input type="file" ng-model="file" class="input-lg" onchange="angular.element(this).scope().newLetter(this.files[0])" />
+                                      <div >
+                                        <a class=" col-sm-2">
+                                          <img src="{{f}}" class="img img-thumbnail" />
+                                        </a>
+                                        <div style="clear:both"></div>
+                                      </div>
+                                </div>
+                                <div class="row">
                                 <button class="btn btn-primary" ng-click="add(user)">Add</button>
                                   </div>
 
@@ -96,13 +100,12 @@
                           <br>
                           <div>
                             <div class="profile-img-wrapper m-t-5 inline">
-                              <img width="35" height="35" data-src-retina="assets/img/profiles/avatar_small2x.jpg" data-src="assets/img/profiles/avatar_small.jpg" alt="" src="assets/img/profiles/avatar_small2x.jpg">
+                              <img width="35" height="35" ng-src="{{data.Image}}" alt="">
                               <div class="chat-status available">
                               </div>
                             </div>
                             <div class="inline m-l-10">
-                              <p class="small hint-text m-t-5">VIA senior product manage
-                                <br>for UI/UX at REVOX</p>
+
                                 <a href="/admin/compose.html#?q={{data.id}}&name={{data.Name}}" class="btn btn-success">Message</a>
                             </div>
                           </div>
