@@ -82,7 +82,7 @@ $scope.newLetter = function(image){
 app.controller("adminCtrl", function($scope, $http, $cookieStore, $rootScope){
 
   $scope.logged = $cookieStore.get("globals").Admin.username;
-  $scope.result = {};
+  $scope.result = [];
   $scope.user = "";
   $scope.newerScope = [];
   $scope.add = function(data){
@@ -93,18 +93,18 @@ app.controller("adminCtrl", function($scope, $http, $cookieStore, $rootScope){
 
     });
   };
-   $http.get('/getAdminUsers?page=1').then(function(res){
-     console.log(res.data);
-     $scope.result = res.data.Data;
-     $scope.newScope = res.data.Pag.Pages;
+   $http.get('/getAdminUsers?page=1').success(function(res){
+     console.log(res);
+     $scope.result = res;
+     //$scope.newScope = res.data.Pag.Pages;
+  /*   if(res.Pag.Pages != 'undefined'){
      for(var i =0; i < $scope.newScope.length; i++){
        var tmp = {"data": i+1};
        $scope.newerScope.push(tmp);
      }
+   }*/
 
-   }, function(err){
-     console.log("err");
-   });
+});
 
    $scope.sends = function(data){
    $scope.pages = {};
