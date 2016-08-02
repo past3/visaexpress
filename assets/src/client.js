@@ -49,6 +49,12 @@ $scope.logged = "user";
 $scope.logged = $cookieStore.get("globals").currentUse.username;
 $scope.result = {};
 $scope.user = "";
+$scope.img = "";
+if($cookieStore.get("globals").Admin.image){
+  $scope.img = $cookieStore.get("globals").Admin.image;
+}else{
+  $scope.img = "assets/images/ic.png";
+}
 $scope.logout = function(){
   console.log("f");
   AuthenticationService.ClearCredentials();
