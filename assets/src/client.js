@@ -50,8 +50,8 @@ $scope.logged = $cookieStore.get("globals").currentUse.username;
 $scope.result = {};
 $scope.user = "";
 $scope.img = "";
-if($cookieStore.get("globals").Admin.image){
-  $scope.img = $cookieStore.get("globals").Admin.image;
+if($cookieStore.get("globals").currentUse.image){
+  $scope.img = $cookieStore.get("globals").currentUse.image;
 }else{
   $scope.img = "assets/images/ic.png";
 }

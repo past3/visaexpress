@@ -1,7 +1,6 @@
 var app = angular.module('visaexpress', ['ngRoute', 'ngCookies', 'ui-notification', 'ngMaterial']);
 app.controller("GeneralCtrl", function($scope, $http, $rootScope, $cookieStore){
 //console.log($cookieStore.get("globals").currentUse.username);
-$scope.logged = "user";
 $scope.logged = $cookieStore.get("globals").Admin.username;
 $scope.result = {};
 $scope.user = "";
@@ -37,7 +36,7 @@ $scope.logged = $cookieStore.get("globals").currentUse.username;
 $scope.result = {};
 $scope.user = "";
 $scope.img = "";
-if($cookieStore.get("globals").Admin.image){
+if($cookieStore.get("globals").currentUse.image){
   $scope.img = $cookieStore.get("globals").currentUse.image;
 }else{
   $scope.img = "assets/images/ic.png";

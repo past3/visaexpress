@@ -43,7 +43,7 @@ func (r *MessageRepo) NewMessage(message Message) error {
 func (r *MessageRepo) GetInbox(to string, count int, page int, perpage int) (Views, error) {
 	data := Views{}
 	res := []Message{}
-	q := r.coll.Find(bson.M{"to": to, "$or": []interface{}{bson.M{"to": "broadcast"}}})
+	q := r.coll.Find(bson.M{"$or": []bson.M{bson.M{"to": "broadcast"}, bson.M{"to": to}}})
 	n, _ := q.Count()
 	Page := SearchPagination(n, page, perpage)
 	err := q.Limit(perpage).Skip(Page.Skip).All(&res)
