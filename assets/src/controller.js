@@ -189,3 +189,41 @@ app.controller("EditDashCtrl", function($scope, $http, $rootScope, Notification)
   };
 
 });
+
+app.controller('GalleryCtrl', function($scope, $http){
+$scope.img = {};
+  $scope.add = function(){
+    $scope.show = "show";
+
+    $http.post('/gallery', $scope.files).then(function(){
+      $scope.data = {};
+      Notification({message: 'Success', title: 'Listing Management'});
+      $scope.show = "hide";
+      $scope.files = [];
+      $scope.image = '';
+      //$location.path('/');
+
+    }, function(){
+        Notification.error("Error Adding Data");
+    });
+  };
+
+  $http.get('/gallery').success(function(res){
+    $scope.img = res;
+  });
+
+
+  $scope.newfile = function(file){
+
+    var reader = new FileReader();
+    reader.onload = function(u){
+          //$scope.files.push(u.target.result);
+          $scope.$apply(function($scope) {
+            $scope.files.push(u.target.result);
+            //console.log(u.target.result);
+          });
+    };
+    reader.readAsDataURL(file);
+
+  };
+});

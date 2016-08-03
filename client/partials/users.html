@@ -3,53 +3,46 @@
     <div class="inner">
       <!-- START BREADCRUMB -->
       <ul class="breadcrumb">
-        <li>
-          <p>Pages</p>
-        </li>
-        <li><a href="#" class="active">Barebone template</a>
-        </li>
+
       </ul>
       <!-- END BREADCRUMB -->
 
     </div>
   </div>
 </div>
-<div class="container-fluid container-fixed-lg">
-            <div class="panel panel-transparent" ng-repeat="data in result">
+<div class="panel panel-transparent" ng-repeat="data in result">
 <div class="col-md-6 sm-no-padding">
-                  <div class="panel panel-transparent">
-                    <div class="panel-body no-padding">
-                      <div id="portlet-advance" class="panel panel-default">
-                        <div class="panel-heading ">
-                          <div class="panel-title">{{data.Name}}
-                          </div>
-                            </div>
-                        <div class="panel-body">
-                          <h3>
-										<span class="semi-bold">{{data.Occupation}}</h3>
-                          <p>{{data.Phone}} <span>   {{data.Email}}</span></p>
-                          <br>
-                          <p>{{data.Address}}</p>
-                          <br>
-                          <div>
-                            <div class="profile-img-wrapper m-t-5 inline">
-                              <img width="35" height="35" data-src-retina="assets/img/profiles/avatar_small2x.jpg" data-src="assets/img/profiles/avatar_small.jpg" alt="" src="assets/img/profiles/avatar_small2x.jpg">
-                              <div class="chat-status available">
-                              </div>
-                            </div>
-                            <div class="inline m-l-10">
-                              <p class="small hint-text m-t-5">VIA senior product manage
-                                <br>for UI/UX at REVOX</p>
-                                <a href="/client/compose.html#?q={{data.id}}&name={{data.Name}}" class="btn btn-success">Message</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+      <div class="panel panel-transparent">
+        <div class="panel-body no-padding">
+          <div id="portlet-advance" class="panel panel-default">
+            <div class="panel-heading ">
+              <div class="panel-title">{{data.Name}}
+              </div>
+                </div>
+            <div class="panel-body">
+              <h3>
+        <span class="semi-bold">{{data.Occupation}}</h3>
+              <p>{{data.Phone}} <span>   {{data.Email}}</span></p>
+              <br>
+              <p>{{data.Address}}</p>
+              <br>
+              <div>
+                <div class="profile-img-wrapper m-t-5 inline">
+                  <img width="35" height="35" ng-src="{{data.Image}}" alt="">
+                  <div class="chat-status available">
                   </div>
+                </div>
+                <div class="inline m-l-10">
+
+                    <a href="/admin/compose.html#?q={{data.id}}&name={{data.Name}}" class="btn btn-success">Message</a>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
             <nav>
 

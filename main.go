@@ -80,6 +80,8 @@ func main() {
 	router.Post("/authAdmin", commonHandlers.ThenFunc(config.AdminAuthHandler))
 	router.Post("/upload", commonHandlers.ThenFunc(config.UploadHandler))
 	router.Get("/getLetters", commonHandlers.ThenFunc(config.GetLetterHandler))
+	router.Get("/gallery", commonHandlers.ThenFunc(config.GetGalleryHandler))
+	router.Post("/gallery", commonHandlers.ThenFunc(config.UploadGalleryHandler))
 	//client Routes
 	router.Get("/memberlogin", commonHandlers.ThenFunc(LoginClient))
 	router.Get("/member", commonHandlers.ThenFunc(ClientHandler))

@@ -20,8 +20,10 @@ $scope.user = "";
 $scope.img = "";
 if($cookieStore.get("globals").currentUse.image){
   $scope.img = $cookieStore.get("globals").currentUse.image;
+  console.log($scope.img);
 }else{
   $scope.img = "assets/images/ic.png";
+  console.log($scope.img);
 }
 });
 app.controller('MainCtrl2', function($scope, $http, $cookieStore){
@@ -30,7 +32,8 @@ app.controller('MainCtrl2', function($scope, $http, $cookieStore){
 	$scope.view = "1";
   $scope.msg = "";
   $scope.read = function(data){
-    $scope.msg = $scope.result[data];
+    $scope.msg = $scope.result[data].Content;
+    $scope.name = $scope.result[data].Name;
   };
 	$scope.outbox = function(){
 		console.log($scope.result);
