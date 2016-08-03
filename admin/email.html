@@ -86,7 +86,9 @@
           <!-- START ACTION BAR -->
           <div class="sm-action-bar">
             <a href="#" class="btn-link toggle-sidebar" data-toggle="sidebar">
-
+              <a href="#" class="btn-link toggle-sidebar" data-toggle="sidebar">
+              <span class="icon-set menu-hambuger"></span>
+            </a>
             </a>
           </div>
           <!-- END ACTION BAR -->
@@ -101,7 +103,9 @@
           <!-- START ACTION BAR -->
           <div class="sm-action-bar">
             <a href="#" class="btn-link" data-toggle="quickview" data-toggle-element="#quickview">
-
+              <a href="#" class="btn-link" data-toggle="quickview" data-toggle-element="#quickview">
+              <span class="icon-set menu-hambuger-plus"></span>
+            </a>
             </a>
           </div>
           <!-- END ACTION BAR -->
@@ -135,16 +139,11 @@
             <div class="dropdown pull-right">
               <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="thumbnail-wrapper d32 circular inline m-t-5">
-                <img src="../assets/images/logo_b.png" alt="" data-src="../assets/images/logo_b.png" data-src-retina="../assets/images/logo_b.png" width="32" height="32">
+                <img ng-src="{{img}}" width="32" height="32"/>
             </span>
               </button>
               <ul class="dropdown-menu profile-dropdown" role="menu">
-                <li><a href="#"><i class="pg-settings_small"></i> Settings</a>
-                </li>
-                <li><a href="#"><i class="pg-outdent"></i> Feedback</a>
-                </li>
-                <li><a href="#"><i class="pg-signals"></i> Help</a>
-                </li>
+
                 <li class="bg-master-lighter">
                   <a href="#" class="clearfix">
                     <span class="pull-left">Logout</span>
@@ -186,19 +185,78 @@
               <!-- START SPLIT LIST VIEW -->
               <div class="split-list">
                 <a class="list-refresh" href="#"><i class="fa fa-refresh"></i></a>
-                <div data-email="list">
+                <div class="list-view">
                   <!-- START EMAIL LIST SORTED BY DATE -->
-                  <ul ng-repeat="data in result">
-                    <a href="" ng-click="view(data.id)" ng-if="view == '0'"><li>
-                      <h4><strong>{{data.Name}}</strong></h4></li>
-                    <li>{{data.Title}}</li></a>
+                  <div class="list-view-wrapper">
+                    <div class="list-view-group-container">
+                      <div class="list-view-group-header">
+                      </div>
+                        <ul ng-repeat="data in result" class="no-padding">
+                            <a href="" ng-click="read($index)"><li class="item padding-15">
+                              <div class="thumbnail-wrapper d32 circular bordered b-danger">
+                                <img ng-src="" width="40" height="40"/>
+                              </div>
+                              <div class="inline m-l-15">
+                                <p class="recipients no-margin hint-text small">
+                                  {{data.Fname}}
+                                </p>
+                                <p class="subject no-margin">
+                              {{data.Title}}
+                                </p>
+                                <p class="body no-margin">
+                                  {{data.Content}}
+                                </p>
+                              </div>
+                              <div class="clearfix"></div>
+                            </li></a>
+                        </ul>
+                    </div>
 
-                    <a href="" ng-click="view(data.id)" ng-if="view == '1'"><li>
-                      <h4><strong>{{data.Fname}}</strong></h4></li>
-                    <li>{{data.Title}}</li></a>
-                  </ul>
+                  </div>
                   <!-- END EMAIL LIST SORTED BY DATE -->
                 </div>
+              </div>
+
+              <div data-email="opened" class="split-details">
+                <div class="no-result">
+                  <h1 ng-hide="msg">No email has been selected</h1>
+                </div>
+                <div class="email-content-wrapper" style="">
+
+                  <div class="email-content">
+                    <div class="email-content-header" ng-show="msg">
+                      <div class="thumbnail-wrapper d48 circular bordered">
+                        <img width="40" height="40"  ng-src="{{pic}}"/>
+                      </div>
+                      <div class="sender inline m-l-10">
+                        <p class="name no-margin bold">
+                        </p>
+                        <p class="datetime no-margin"></p>
+                      </div>
+                      <div class="clearfix"></div>
+                      <div class="subject m-t-20 m-b-20 semi-bold">
+                      </div>
+                      <div class="fromto">
+                        <div class="pull-left">
+                          <div class="btn-group ">
+                            <a class="btn btn-small btn-rounded" href="#">
+                                            {{name}}
+
+                                            </a>
+
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="email-content-body m-t-20">
+                      {{msg}}
+                    </div>
+
+                  </div>
+                </div>
+
               </div>
               <!-- END SPLIT LIST VIEW -->
               <!-- START SPLIT DETAILS -->
@@ -283,7 +341,7 @@
 
 
     <script src="../assets/scripts.js" type="text/javascript"></script>
-    
+
 
     <!-- END VENDOR JS -->
     <!-- BEGIN CORE TEMPLATE JS -->

@@ -1,8 +1,12 @@
 package main
 
 import (
+	"encoding/base64"
 	"encoding/json"
 	"strconv"
+	"strings"
+
+	"github.com/mitchellh/goamz/s3"
 
 	//	"github.com/gorilla/context"
 
@@ -86,6 +90,22 @@ func (c *Config) CreateHandler(w http.ResponseWriter, r *http.Request) {
 	err := json.NewDecoder(r.Body).Decode(&member)
 	if err != nil {
 		log.Println(err)
+	}
+	if member.Image != "" {
+		bucket := c.S3Bucket
+		byt, err := base64.StdEncoding.DecodeString(strings.Split(member.Image, "base64,")[1])
+		if err != nil {
+			log.Println(err)
+		}
+		meta := strings.Split(member.Image, "base64,")[0]
+		newmeta := strings.Replace(strings.Replace(meta, "data:", "", -1), ";", "", -1)
+		name := randSeq(10)
+		err = bucket.Put(name, byt, newmeta, s3.PublicReadWrite)
+		if err != nil {
+			log.Println(err)
+		}
+		member.Image = bucket.URL(name)
+
 	}
 	u := MemberRepo{c.MongoSession.DB(c.MONGODB).C("member")}
 	u.Create(member)

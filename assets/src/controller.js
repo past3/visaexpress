@@ -5,6 +5,12 @@ $scope.logged = "user";
 $scope.logged = $cookieStore.get("globals").Admin.username;
 $scope.result = {};
 $scope.user = "";
+$scope.img = "";
+if($cookieStore.get("globals").Admin.image){
+  $scope.img = $cookieStore.get("globals").Admin.image;
+}else{
+  $scope.img = "assets/images/ic.png";
+}
 $scope.logout = function(){
   console.log("f");
   AuthenticationService.ClearCredentials();
@@ -154,6 +160,7 @@ app.controller("EditDashCtrl", function($scope, $http, $rootScope, Notification)
     data.BackImage = $scope.ff;
     $http.post('/upload', data).then(function(){
       $scope.show = "hide";
+      $scope.result = {};
         Notification({message: 'Success', title: 'Newsletter Uploaded'});
     }, function(err){
         Notification.error("Error Adding Data");
