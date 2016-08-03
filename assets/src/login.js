@@ -17,7 +17,7 @@ $scope.login = function login(dat){
    AuthenticationService.AdminLogin(dat.Username, dat.Password, function(response){
       if(response.Auth == 'true'){
         console.log("true");
-        AuthenticationService.SetAdmin(response.Username, vm.Password, response.id);
+        AuthenticationService.SetAdmin(response.Username, response.Image, response.id);
           $scope.hide = "false";
         $window.location = '/admin';
       } else{
@@ -45,7 +45,7 @@ $scope.login = function login(dat){
    AuthenticationService.Login(dat.Username, dat.Password, function(response){
       if(response.Auth == 'true'){
         console.log("true");
-        AuthenticationService.SetCredent(response.Username, vm.Password, response.id);
+        AuthenticationService.SetCredent(response.Username, response.Image, response.id);
           $scope.hide = "false";
         $window.location = '/member';
       } else{

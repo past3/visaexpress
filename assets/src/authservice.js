@@ -29,12 +29,13 @@ $rootScope.bl = false;
   };
 
 
-    function SetCredent(username, password, id){
-      var authdata = Base64.encode(username + ':' + password);
+    function SetCredent(username, image, id){
+      var authdata = Base64.encode(username);
       $rootScope.globals = {
         currentUse: {
           username: username,
           authdata: authdata,
+          image: image,
           id: id
         }
       };
@@ -43,12 +44,13 @@ $rootScope.bl = false;
     $cookieStore.put('globals', $rootScope.globals);
   }
 
-  function SetAdmin(username, password, id){
-    var authdata = Base64.encode(username + ':' + password);
+  function SetAdmin(username, image, id){
+    var authdata = Base64.encode(username);
     $rootScope.globals = {
       Admin: {
         username: username,
         authdata: authdata,
+        image: image,
         id: id
       }
     };
