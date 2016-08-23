@@ -3,7 +3,8 @@
 
 <div class="container-fluid container-fixed-lg">
             <div class="row">
-              <div class="col-md-6">
+              <br/>
+              <div class="col-sm-offset-3 col-md-6">
                 <!-- START PANEL -->
                 <div class="panel panel-default">
                   <div class="panel-heading">
@@ -12,11 +13,7 @@
                     </div>
                   </div>
                   <div class="panel-body">
-                    <h5>
-              Gallery Control
-            </h5>
-
-
+                    <h5>  Gallery Control</h5>
                       <div class="row">
                         <div class="col-sm-6">
                           <label for="exampleInputFile">Images</label>
@@ -30,7 +27,9 @@
 
                           </div>
                         </div>
-                      </div>
+
+                        <br/>
+                        <br/>
                         <div class="col-md-6">
                           <div class="form-group form-group-default">
                             <button ng-click="add()">Add</button>
@@ -38,12 +37,14 @@
                           </div>
                         </div>
                       </div>
+
+                      </div>
                   </div>
                 </div>
                 <!-- END PANEL -->
                 <div class="row">
                   <div class="panel panel-transparent" ng-repeat="im in img">
-                <div class="col-md-6 sm-no-padding">
+                    <div class="col-md-6 sm-no-padding">
                         <div class="panel panel-transparent">
                           <div class="panel-body no-padding">
                             <div id="portlet-advance" class="panel panel-default">
@@ -56,4 +57,5 @@
                       </div>
                     </div>
                 </div>
+                <div style="clear:both"></div>
               </div>

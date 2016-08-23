@@ -20,15 +20,14 @@
               </div>
                 </div>
             <div class="panel-body">
-              <h3>
-        <span class="semi-bold">{{data.Occupation}}</h3>
-              <p>{{data.Phone}} <span>   {{data.Email}}</span></p>
+              <h3 class="semi-bold" >{{data.Occupation}}</h3>
+              <p>{{data.Phone}} <span>   {{data.Email}}</span> </p>
               <br>
               <p>{{data.Address}}</p>
               <br>
               <div>
                 <div class="profile-img-wrapper m-t-5 inline">
-                  <img width="35" height="35" ng-src="{{data.Image}}" alt="">
+                  <img width="35" height="35" ng-src="{{data.Image || 'http://localhost:8181/assets/images/ic.png' }}" alt="">
                   <div class="chat-status available">
                   </div>
                 </div>
@@ -44,8 +43,10 @@
     </div>
   </div>
 
-            <nav>
+        <div style="clear:both"></div>
 
+        <div style="text-align:center">
+          <nav style="display:inline-block;">
           <ul class="pagination">
             <li>
               <a href="#" aria-label="Previous">
@@ -53,9 +54,11 @@
               </a>
             </li>
             <li ng-repeat="num in newerScope"><a href="#" ng-click="$event.preventDefault();sends($index + 1)">{{$index +1}}</a></li>
+            <li>
               <a href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>
           </ul>
         </nav>
+      </div>
