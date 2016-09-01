@@ -109,6 +109,9 @@ func main() {
 		http.ServeFile(w, r, "./frontend/index.html")
 	})
 
+	router.HandlerFunc("GET", "/zohoverify/verifyforzoho.html", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./frontend/verifyforzoho.html")
+	})
 	router.NotFound = http.FileServer(http.Dir("./assets/"))
 
 	PORT := os.Getenv("PORT")
