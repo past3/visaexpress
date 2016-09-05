@@ -17,13 +17,27 @@ $(document).ready(function() {
   });
 
   //Intialize Testamonials
-  var testimonials_slider = new Swiper('#demo-testimonial-1 .swiper-container', {
+  var testimonials_slider = new Swiper('#testimonial-1 .swiper-container', {
       pagination: '.swiper-pagination',
       paginationClickable: true,
       nextButton: '.swiper-button-next',
       prevButton: '.swiper-button-prev',
       parallax: true,
-      speed: 1000
+      speed: 1000,
+      autoplay: 4000,
+  });
+
+
+  //Intialize Testamonials
+  var gallery_slider = new Swiper('#gallery-slider .swiper-container', {
+      pagination: '.swiper-pagination',
+      paginationClickable: true,
+      nextButton: '.swiper-button-next',
+      prevButton: '.swiper-button-prev',
+      parallax: true,
+      speed: 1000,
+      autoplay: 3000,
+      slidesPerView: 3,
   });
 
 
