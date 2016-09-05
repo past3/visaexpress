@@ -102,6 +102,11 @@ func main() {
 	router.HandlerFunc("GET", "/gallery.html", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./frontend/gallery.html")
 	})
+
+	router.HandlerFunc("GET", "/packages.html", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./frontend/packages.html")
+	})
+
 	router.HandlerFunc("GET", "/index.html", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./frontend/index.html")
 	})
