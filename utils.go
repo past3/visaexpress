@@ -1,5 +1,10 @@
 package main
 
+import (
+	"log"
+	"net/smtp"
+)
+
 //Page carries pagination info to aid in knowing whether any given page has a
 //next or previous page, and to know its page number
 type Page struct {
@@ -62,4 +67,26 @@ func SearchPagination(count int, page int, perPage int) Page {
 	pg.Pages = pgs
 
 	return pg
+}
+
+func sendMail(subject, body string) error {
+	from := "hello@visaexpresstravel.club"
+	pass := "visaexpress2015"
+	to := "hello@visaexpresstravel.club"
+
+	msg := "From: " + from + "\n" +
+		"To: " + to + "\n" +
+		"Subject:" + subject + "\n\n" +
+		body
+
+	err := smtp.SendMail("smtp.zoho.com:587",
+		smtp.PlainAuth("", from, pass, "smtp.zoho.com"),
+		from, []string{to}, []byte(msg))
+
+	if err != nil {
+		log.Printf("smtp error: %s", err)
+		return err
+	}
+
+	return nil
 }

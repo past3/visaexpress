@@ -93,6 +93,8 @@ func main() {
 	router.Get("/inbox", commonHandlers.ThenFunc(config.GetInboxHandler))
 	router.Get("/outbox", commonHandlers.ThenFunc(config.GetOutboxHandler))
 
+	router.Handle("POST", "/contact.html", config.contactUs)
+
 	router.HandlerFunc("GET", "/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./frontend/favicon.ico")
 	})
