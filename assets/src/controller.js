@@ -157,7 +157,6 @@ app.controller("EditDashCtrl", function($scope, $http, $rootScope, Notification)
     $scope.show = "show";
     data.Image = $scope.f;
     data.type = image;
-    data.BackImage = $scope.ff;
     $http.post('/upload', data).then(function(){
       $scope.show = "hide";
       $scope.result = {};
@@ -178,13 +177,6 @@ app.controller("EditDashCtrl", function($scope, $http, $rootScope, Notification)
     };
     reader.readAsDataURL(image);
   };
-  $scope.newLetter2 = function(image){
-    var reader = new FileReader();
-    reader.onload = function(u){
-      $scope.$apply(function($scope){
-        $scope.ff = u.target.result;
-      });
-    };
     reader.readAsDataURL(image);
   };
 

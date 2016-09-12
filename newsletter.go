@@ -52,6 +52,16 @@ func (r *NewsletterRepo) UploadLetter(nl Newsletter) error {
 	return err
 }
 
+func (r *NewsletterRepo) UploadPackage(nl Newsletter) error {
+	err := r.coll.Insert(nl)
+
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+	return err
+}
+
 func (r *NewsletterRepo) UploadGallery(nl Gallery) error {
 	err := r.coll.Insert(nl)
 
@@ -135,6 +145,35 @@ func (c *Config) UploadHandler(w http.ResponseWriter, r *http.Request) {
 			data.BackImage = bucket.URL(name)
 		}
 		err = u.UploadLetter(data)
+		if err != nil {
+			log.Println(err)
+		}
+	}
+
+}
+
+func (c *Config) PackageHandler(w http.ResponseWriter, r *http.Request) {
+	data := Newsletter{}
+	u := NewsletterRepo{c.MongoSession.DB(c.MONGODB).C("packages")}
+	err := json.NewDecoder(r.Body).Decode(&data)
+	if err != nil {
+		log.Println(err)
+	}
+	if data.Image != "" {
+		bucket := c.S3Bucket
+		byt, err := base64.StdEncoding.DecodeString(strings.Split(data.Image, "base64,")[1])
+		if err != nil {
+			log.Println(err)
+		}
+		meta := strings.Split(data.Image, "base64,")[0]
+		newmeta := strings.Replace(strings.Replace(meta, "data:", "", -1), ";", "", -1)
+		name := randSeq(10) + data.LetterNo
+		err = bucket.Put(name, byt, newmeta, s3.PublicReadWrite)
+		if err != nil {
+			log.Println(err)
+		}
+		data.Image = bucket.URL(name)
+		err = u.UploadPackage(data)
 		if err != nil {
 			log.Println(err)
 		}
