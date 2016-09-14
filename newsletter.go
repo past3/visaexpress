@@ -94,6 +94,31 @@ func (r *NewsletterRepo) GetLetters() ([]Newsletter, error) {
 
 }
 
+func (r *NewsletterRepo) GetPackages() ([]Newsletter, error) {
+	data := []Newsletter{}
+	err := r.coll.Find(bson.M{}).All(&data)
+	if err != nil {
+		log.Println(err)
+		return data, err
+	}
+	return data, nil
+
+}
+
+func (c *Config) GetLetterHandler(w http.ResponseWriter, r *http.Request) {
+	u := NewsletterRepo{c.MongoSession.DB(c.MONGODB).C("packages")}
+	data, err := u.GetPackages()
+	if err != nil {
+		log.Println(err)
+	}
+	res, err := json.Marshal(data)
+	if err != nil {
+		log.Println(err)
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(res)
+}
+
 func (c *Config) GetLetterHandler(w http.ResponseWriter, r *http.Request) {
 	u := NewsletterRepo{c.MongoSession.DB(c.MONGODB).C("newsletter")}
 	data, err := u.GetLetters()

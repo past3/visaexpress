@@ -182,6 +182,45 @@ app.controller("EditDashCtrl", function($scope, $http, $rootScope, Notification)
 
 });
 
+app.controller("PackageCtrl", function($scope, $http, $rootScope, Notification){
+  $scope.result = {};
+  var image = "0";
+  $http.get('/getLetters').then(function(res){
+    console.log(res);
+    $scope.result = res.data;
+  }, function(){
+
+  });
+  $scope.add = function(data){
+    $scope.show = "show";
+    data.Image = $scope.f;
+    data.type = image;
+    $http.post('/package', data).then(function(){
+      $scope.show = "hide";
+      $scope.result = {};
+        Notification({message: 'Success', title: 'Package Manager'});
+    }, function(err){
+        Notification.error("Error Adding Data");
+        $scope.show = "hide";
+    });
+
+  };
+  $scope.newLetter = function(image){
+    var reader = new FileReader();
+    reader.onload = function(u){
+      $scope.$apply(function($scope){
+        $scope.f = u.target.result;
+        image = "1";
+      });
+    };
+    reader.readAsDataURL(image);
+  };
+
+
+
+});
+
+
 app.controller('GalleryCtrl', function($scope, $http){
 $scope.img = {};
   $scope.add = function(){
