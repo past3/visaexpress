@@ -191,7 +191,6 @@ app.controller("PackageCtrl", function($scope, $http, $rootScope, Notification){
   }, function(){
 
   });*/
-  });
 
   $scope.add = function(data){
     $scope.show = "show";
@@ -218,9 +217,6 @@ app.controller("PackageCtrl", function($scope, $http, $rootScope, Notification){
     };
     reader.readAsDataURL(image);
   };
-
-
-
 });
 
 
