@@ -105,7 +105,7 @@ func (r *NewsletterRepo) GetPackages() ([]Newsletter, error) {
 
 }
 
-func (c *Config) GetLetterHandler(w http.ResponseWriter, r *http.Request) {
+func (c *Config) GetPackagesHandler(w http.ResponseWriter, r *http.Request) {
 	u := NewsletterRepo{c.MongoSession.DB(c.MONGODB).C("packages")}
 	data, err := u.GetPackages()
 	if err != nil {

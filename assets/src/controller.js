@@ -177,20 +177,18 @@ app.controller("EditDashCtrl", function($scope, $http, $rootScope, Notification)
     };
     reader.readAsDataURL(image);
   };
-    reader.readAsDataURL(image);
-  };
 
 });
 
 app.controller("PackageCtrl", function($scope, $http, $rootScope, Notification){
   $scope.result = {};
   var image = "0";
-  $http.get('/getLetters').then(function(res){
+/*  $http.get('/getLetters').then(function(res){
     console.log(res);
     $scope.result = res.data;
   }, function(){
 
-  });
+  });*/
   $scope.add = function(data){
     $scope.show = "show";
     data.Image = $scope.f;

@@ -16,7 +16,7 @@ app.config(['$routeProvider', function($routeProvider){
 		templateUrl:'/admin/partials/gallery.html',
 		controller:'GalleryCtrl'
 	}).when('/package', {
-			templateUrl:'/admin/partials/',
+			templateUrl:'/admin/partials/package.html',
 			controller:'PackageCtrl'
 	}).when('/logout', {
 		controller:'LogCtrl',

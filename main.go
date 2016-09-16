@@ -83,6 +83,7 @@ func main() {
 	router.Get("/gallery", commonHandlers.ThenFunc(config.GetGalleryHandler))
 	router.Post("/gallery", commonHandlers.ThenFunc(config.UploadGalleryHandler))
 	router.Post("/package", commonHandlers.ThenFunc(config.PackageHandler))
+	router.Get("/package", commonHandlers.ThenFunc(config.GetPackagesHandler))
 	//client Routes
 	router.Get("/memberlogin", commonHandlers.ThenFunc(LoginClient))
 	router.Get("/member", commonHandlers.ThenFunc(ClientHandler))
