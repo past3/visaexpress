@@ -1,30 +1,31 @@
 var app = angular.module("visaexpress");
+
 app.controller("GeneralCtrl", function(AuthenticationService, $scope, $http, $rootScope, $cookieStore){
-//console.log($cookieStore.get("globals").Admin.username);
-$scope.logged = "user";
-$scope.logged = $cookieStore.get("globals").Admin.username;
-$scope.result = {};
-$scope.user = "";
-$scope.img = "";
-if($cookieStore.get("globals").Admin.image){
-  $scope.img = $cookieStore.get("globals").Admin.image;
-}else{
-  $scope.img = "assets/images/ic.png";
-}
-$scope.logout = function(){
-  console.log("f");
-  AuthenticationService.ClearCredentials();
-  //$window.location = '/log';
-};
+  //console.log($cookieStore.get("globals").Admin.username);
+  $scope.logged = "user";
+  $scope.logged = $cookieStore.get("globals").Admin.username;
+  $scope.result = {};
+  $scope.user = "";
+  $scope.img = "";
+  if($cookieStore.get("globals").Admin.image){
+    $scope.img = $cookieStore.get("globals").Admin.image;
+  }else{
+    $scope.img = "assets/images/ic.png";
+  }
+  $scope.logout = function(){
+    console.log("f");
+    AuthenticationService.ClearCredentials();
+    //$window.location = '/log';
+  };
 });
+
 
 app.controller("LogCtrl", function($window, AuthenticationService, $scope, $http, $rootScope, $cookieStore){
-//console.log($cookieStore.get("globals").Admin.username);
-console.log("try");
-AuthenticationService.ClearCredentials();
-$window.location = '/login';
+  //console.log($cookieStore.get("globals").Admin.username);
+  console.log("try");
+  AuthenticationService.ClearCredentials();
+  $window.location = '/login';
 });
-
 
 
 app.controller("MainCtrl", function($scope, $http, $rootScope, $cookieStore){
@@ -42,6 +43,7 @@ $scope.add = function(data){
 
   });
 };
+
 $scope.newLetter = function(image){
   var reader = new FileReader();
   reader.onload = function(u){
@@ -189,6 +191,8 @@ app.controller("PackageCtrl", function($scope, $http, $rootScope, Notification){
   }, function(){
 
   });*/
+  });
+
   $scope.add = function(data){
     $scope.show = "show";
     data.Image = $scope.f;
@@ -203,6 +207,7 @@ app.controller("PackageCtrl", function($scope, $http, $rootScope, Notification){
     });
 
   };
+
   $scope.newLetter = function(image){
     var reader = new FileReader();
     reader.onload = function(u){
