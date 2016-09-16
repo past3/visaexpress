@@ -82,7 +82,7 @@ func main() {
 	router.Get("/getLetters", commonHandlers.ThenFunc(config.GetLetterHandler))
 	router.Get("/gallery", commonHandlers.ThenFunc(config.GetGalleryHandler))
 	router.Post("/gallery", commonHandlers.ThenFunc(config.UploadGalleryHandler))
-	router.Post("/package", commonHandlers.ThenFunc(config.PackageHandler))
+	router.Post("/package", commonHandlers.ThenFunc(config.SubmitPackageHandler))
 	//client Routes
 	router.Get("/memberlogin", commonHandlers.ThenFunc(LoginClient))
 	router.Get("/member", commonHandlers.ThenFunc(ClientHandler))
@@ -105,10 +105,7 @@ func main() {
 	router.HandlerFunc("GET", "/gallery.html", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./frontend/gallery.html")
 	})
-
-	router.HandlerFunc("GET", "/packages.html", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "./frontend/packages.html")
-	})
+	router.HandlerFunc("GET", "/packages.html", config.GetPackagesHandler)
 
 	router.HandlerFunc("GET", "/index.html", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./frontend/index.html")
