@@ -1,39 +1,27 @@
-<div class="jumbotron" data-pages="parallax">
-  <div class="container-fluid container-fixed-lg sm-p-l-20 sm-p-r-20">
-    <div class="inner">
-      <!-- START BREADCRUMB -->
-      <ul class="breadcrumb">
-
-      </ul>
-      <!-- END BREADCRUMB -->
-
-    </div>
-  </div>
-</div>
-<div class="panel panel-transparent" ng-repeat="data in result">
-<div class="col-md-6 sm-no-padding">
+<br/>
+<div class="panel panel-transparent" >
+  <div class="col-md-6 sm-no-padding" ng-repeat="data in result">
       <div class="panel panel-transparent">
         <div class="panel-body no-padding">
           <div id="portlet-advance" class="panel panel-default">
             <div class="panel-heading ">
               <div class="panel-title">{{data.Name}}
               </div>
-                </div>
+            </div>
             <div class="panel-body">
               <h3 class="semi-bold" >{{data.Occupation}}</h3>
-              <p>{{data.Phone}} <span>   {{data.Email}}</span> </p>
+              <p>{{data.Phone}} <span>   {{data.Email}}</span></p>
               <br>
               <p>{{data.Address}}</p>
               <br>
               <div>
                 <div class="profile-img-wrapper m-t-5 inline">
-                  <img width="35" height="35" ng-src="{{data.Image || 'http://localhost:8181/assets/images/ic.png' }}" alt="">
+                  <img width="35" height="35" ng-src="{{data.Image || '/assets/images/ic.png' }}" alt="">
                   <div class="chat-status available">
                   </div>
                 </div>
                 <div class="inline m-l-10">
-
-                    <a href="/admin/compose.html#?q={{data.id}}&name={{data.Name}}" class="btn btn-success">Message</a>
+                  <a href="/admin/compose.html#?q={{data.id}}&name={{data.Name}}" class="btn btn-success">Message</a>
                 </div>
               </div>
             </div>
