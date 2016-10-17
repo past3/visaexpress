@@ -27,7 +27,7 @@
                                   <div class="col-sm-6">
                                     <div class="form-group form-group-default required">
                                       <label>Title</label>
-                                      <input type="text" class="form-control" ng-model="data.Title" required>
+                                      <input type="text" class="form-control" ng-model="datas.Title" required>
                                     </div>
                                   </div>
                                 </div>
@@ -35,7 +35,7 @@
                                   <div class="col-sm-6">
                                     <div class="form-group form-group-default">
                                       <label>Description</label>
-                                      <textarea  class="form-control" ng-model="data.Description" ></textarea>
+                                      <textarea  class="form-control" ng-model="datas.Description" ></textarea>
                                     </div>
                                   </div>
                                 </div>
@@ -43,7 +43,7 @@
                                   <div class="col-sm-6">
                                     <div class="form-group form-group-default">
                                       <label>Event Date</label>
-                                      <input type="date" class="form-control" ng-model="data.Date" required>
+                                      <input type="date" class="form-control" ng-model="datas.Date" required>
                                     </div>
                                   </div>
                                 </div>
@@ -62,7 +62,7 @@
                                 </div>
                                   <div class="col-md-6">
                                     <div class="form-group form-group-default">
-                                      <button ng-click="add(data)">Update</button>
+                                      <button ng-click="add(datas)">Update</button>
                                       <md-progress-circular md-mode="indeterminate" ng-show="show == 'show'"></md-progress-circular>
                                     </div>
                                   </div>

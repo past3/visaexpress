@@ -148,7 +148,8 @@ app.controller("DashCtrl", function($scope, $http){
 });
 app.controller("EditDashCtrl", function($scope, $http, $rootScope, Notification){
   $scope.result = {};
-  var image = "0";
+  $scope.image = "1";
+  $scope.datas = {};
   $http.get('/getLetters').then(function(res){
     console.log(res);
     $scope.result = res.data;
@@ -158,10 +159,12 @@ app.controller("EditDashCtrl", function($scope, $http, $rootScope, Notification)
   $scope.add = function(data){
     $scope.show = "show";
     data.Image = $scope.f;
-    data.type = image;
+    data.type = $scope.image;
+    //$scope.result = {};
     $http.post('/upload', data).then(function(){
       $scope.show = "hide";
-      $scope.result = {};
+      $scope.datas = {};
+      $scope.f = "";  
         Notification({message: 'Success', title: 'Newsletter Uploaded'});
     }, function(err){
         Notification.error("Error Adding Data");
@@ -174,7 +177,7 @@ app.controller("EditDashCtrl", function($scope, $http, $rootScope, Notification)
     reader.onload = function(u){
       $scope.$apply(function($scope){
         $scope.f = u.target.result;
-        image = "1";
+        $scope.image = "0";
       });
     };
     reader.readAsDataURL(image);

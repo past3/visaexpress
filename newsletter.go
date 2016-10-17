@@ -50,7 +50,7 @@ func (r *NewsletterRepo) UploadLetter(nl Newsletter) error {
 
 func (r *NewsletterRepo) GetLetters() ([]Newsletter, error) {
 	data := []Newsletter{}
-	err := r.coll.Find(bson.M{}).All(&data)
+	err := r.coll.Find(bson.M{}).Sort("-date").All(&data)
 	if err != nil {
 		log.Println(err)
 		return data, err
@@ -134,10 +134,10 @@ func (c *Config) UploadHandler(w http.ResponseWriter, r *http.Request) {
 			}
 			data.BackImage = bucket.URL(name)
 		}
-		err = u.UploadLetter(data)
 		if err != nil {
 			log.Println(err)
 		}
 	}
+	err = u.UploadLetter(data)
 
 }
