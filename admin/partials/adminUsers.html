@@ -1,24 +1,16 @@
 <div class="jumbotron" data-pages="parallax">
   <div class="container-fluid container-fixed-lg sm-p-l-20 sm-p-r-20">
     <div class="inner">
-      <!-- START BREADCRUMB -->
-
-      <!-- END BREADCRUMB -->
       <div class="container-fluid container-fixed-lg">
-                  <div class="row">
-                    <br/>
-                    <div class="col-md-offset-3 col-md-6">
+                  <div class="">
+                    <div class="col-md-offset-2 col-md-8">
                       <!-- START PANEL -->
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <div class="panel-title">
+                      <div class="pa3 pv3">
+                          <h2 class="">
                             User Form
-                          </div>
-                        </div>
-                        <div class="panel-body">
-                          <h5>
-
-      						</h5>
+                          </h2>
+                        <div class="">
+                          <h5>These users will be able to log in as admin</h5>
                           <form class="" role="form">
                             <div class="form-group form-group-default required ">
                               <label>Email</label>
@@ -31,11 +23,11 @@
                                 </div>
                               </div>
                               <div class="row">
-                                  <div class="form-group form-group-default required">
-                                    <label>Username</label>
-                                    <input type="text" class="form-control" ng-model="user.Username" required>
-                                  </div>
+                                <div class="form-group form-group-default required">
+                                  <label>Username</label>
+                                  <input type="text" class="form-control" ng-model="user.Username" required>
                                 </div>
+                              </div>
                             <div class="form-group form-group-default required">
                               <label>Password</label>
                               <input type="password" class="form-control" ng-model="user.Password" required>
@@ -52,7 +44,7 @@
                                   </div>
                                 </div>
                                 <div class="row">
-                                <button class="btn btn-primary" ng-click="add(user)">Add</button>
+                                <button class="btn btn-primary btn-lg pull-right" ng-click="add(user)">Add</button>
                                   </div>
 
                           </form>
@@ -67,45 +59,40 @@
     </div>
   </div>
 </div>
-<div class="container-fluid container-fixed-lg">
-            <div class="panel panel-transparent" ng-repeat="data in result">
-<div class="col-md-6 sm-no-padding">
-                  <div class="panel panel-transparent">
-                    <div class="panel-body no-padding">
-                      <div id="portlet-advance" class="panel panel-default">
-                        <div class="panel-heading ">
-                          <div class="panel-title">{{data.Name}}
-                          </div>
-                            </div>
-                        <div class="panel-body">
-                          <h3>
-									</h3>
-                          <p>{{data.Phone}} <span>   {{data.Email}}</span></p>
-                          <br>
-                          <p>{{data.Address}}</p>
-                          <br>
-                          <div>
-                            <div class="profile-img-wrapper m-t-5 inline">
-                              <img width="35" height="35" data-src-retina="assets/img/profiles/avatar_small2x.jpg" data-src="assets/img/profiles/avatar_small.jpg" alt="" src="assets/img/profiles/avatar_small2x.jpg">
-                              <div class="chat-status available">
-                              </div>
-                            </div>
-                            <div class="inline m-l-10">
-                              <p class="small hint-text m-t-5">VIA senior product manage
-                                <br>for UI/UX at REVOX</p>
-                                <a href="/admin/compose.html#?q={{data.id}}&name={{data.Name}}" class="btn btn-success">Message</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+
+
+    <div class="panel panel-transparent cf" >
+        <div class="col-md-6 sm-no-padding" ng-repeat="data in result">
+          <div class="panel panel-transparent">
+            <div class="panel-body no-padding">
+              <div id="portlet-advance" class="panel panel-default">
+                <div class="panel-heading ">
+                  <div class="panel-title">{{data.Username}}
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <p>{{data.Phone}} <span>   {{data.Email}}</span></p>
+                  <br>
+                  <p>{{data.Address}}</p>
+                  <br>
+                  <div>
+                    <div class="profile-img-wrapper m-t-5 inline">
+                      <img width="35" height="35" ng-src="{{data.Image || '/assets/images/ic.png'}}" alt="profile picture"/>
+                    </div>
+                    <div class="inline m-l-10">
+                        <a href="/admin/compose.html#?q={{data.id}}&name={{data.Name}}" class="btn btn-success">Message</a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <nav>
 
+      <div class="tc cf">
+        <nav class="dib">
           <ul class="pagination">
             <li>
               <a href="#" aria-label="Previous">
@@ -113,9 +100,11 @@
               </a>
             </li>
             <li ng-repeat="num in newerScope"><a href="#" ng-click="$event.preventDefault();sends($index + 1)">{{$index +1}}</a></li>
+            <li>
               <a href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>
           </ul>
         </nav>
+      </div>

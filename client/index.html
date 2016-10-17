@@ -39,15 +39,24 @@
         document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="pages/css/windows.chrome.fix.css" />'
     }
     </script>
+    <style>
+    a.md-default-theme:not(.md-button), a:not(.md-button), a.md-default-theme:hover{
+      color:black;
+    }
+
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+      display: none !important;
+    }
+    </style>
   </head>
-  <body class="fixed-header">
+  <body class="fixed-header ng-cloak">
     <!-- BEGIN SIDEBAR -->
     <div class="page-sidebar" data-pages="sidebar">
       <div id="appMenu" class="sidebar-overlay-slide from-top">
       </div>
       <!-- BEGIN SIDEBAR HEADER -->
       <div class="sidebar-header">
-        <img src="../assets/images/logo_b.png" class="brand" width="78" height="22">
+        <img src="/assets/images/logo_white_2x.png" class="brand" width="78" height="22">
         <div class="sidebar-header-controls">
           <button data-pages-toggle="#appMenu" class="btn btn-xs sidebar-slide-toggle btn-link m-l-20" type="button"><i class="fa fa-angle-down fs-16"></i>
           </button>
@@ -61,24 +70,23 @@
         <ul class="menu-items">
           <li class="m-t-30">
             <a href="#/" class="detailed">
-              <span class="title">Dashboard</span>
+              <span class="title">Newsletters</span>
+            </a>
+            <span class="icon-thumbnail "><i class="fa fa-list"></i></span>
+          </li>
 
+          <li class="">
+            <a href="#/users" class="detailed">
+              <span class="title ">Members</span>
+            </a>
+            <span class="icon-thumbnail "><i class="fa fa-user"></i></span>
+          </li>
+
+          <li class="">
+            <a href="/client/email.html">
+              <span class="title">Mail</span>
             </a>
             <span class="icon-thumbnail "><i class="pg-mail"></i></span>
-          </li>
-
-          <li class="">
-          <a href="/client/email.html">
-          <span class="title">Mail</span>
-          </a>
-          <span class="icon-thumbnail "><i class="pg-mail"></i></span>
-          </li>
-
-          <li class="">
-          <a href="#/users">
-          <span class="title">Members</span>
-          </a>
-          <span class="icon-thumbnail "><i class="pg-mail"></i></span>
           </li>
 
         </ul>
@@ -107,36 +115,24 @@
           <div class="pull-center hidden-md hidden-lg">
             <div class="header-inner">
               <div class="brand inline">
-                <img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo_2x.png" width="78" height="22">
+                <img src="assets/img/logo_b.png" alt="logo" data-src="assets/img/logo_b.png" data-src-retina="assets/img/logo_b.png" width="78" height="22">
               </div>
             </div>
           </div>
-          <!-- RIGHT SIDE -->
-          <div class="pull-right full-height visible-sm visible-xs">
-            <!-- START ACTION BAR -->
-            <div class="header-inner">
-              <a href="#" class="btn-link visible-sm-inline-block visible-xs-inline-block" data-toggle="quickview" data-toggle-element="#quickview">
 
-              </a>
-            </div>
-            <!-- END ACTION BAR -->
-          </div>
         </div>
         <!-- END MOBILE CONTROLS -->
         <div class=" pull-left sm-table hidden-xs hidden-sm">
           <div class="header-inner">
             <div class="brand inline">
-              <img src="../assets/images/logo_b.png" width="78" height="22">
+              <div class="brand inline">
+                <img src="/assets/images/logo_b.png" alt="logo" data-src="/assets/images/logo_b.png" data-src-retina="/assets/images/logo_b.png" width="78" height="22">
+              </div>
             </div>
-            <!-- START NOTIFICATION LIST -->
+         </div>
+        </div>
 
-            <!-- END NOTIFICATIONS LIST -->
-            <a href="#" class="search-link" data-toggle="search"><i class="pg-search"></i>Type anywhere to <span class="bold">search</span></a> </div>
-        </div>
-        <div class=" pull-right">
-          <div class="header-inner">
-                    </div>
-        </div>
+
         <div class=" pull-right">
           <!-- START User Info-->
           <div class="visible-lg visible-md m-t-10" ng-controller="GeneralCtrl">
@@ -146,7 +142,7 @@
             <div class="dropdown pull-right">
               <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="thumbnail-wrapper d32 circular inline m-t-5">
-                <img src="{{img}}" width="32" height="32">
+                <img src="/{{img}}" width="32" height="32">
             </span>
               </button>
               <ul class="dropdown-menu profile-dropdown" role="menu">
@@ -168,9 +164,6 @@
       <div class="page-content-wrapper">
         <!-- START PAGE CONTENT -->
         <div class="content">
-          <!-- START JUMBOTRON -->
-
-          <!-- END JUMBOTRON -->
           <!-- START CONTAINER FLUID -->
 
             <!-- BEGIN PlACE PAGE CONTENT HERE -->
@@ -212,7 +205,7 @@
         <!-- BEGIN Overlay Header !-->
         <div class="container-fluid">
           <!-- BEGIN Overlay Logo !-->
-          <img class="overlay-brand" src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" data-src-retina="/assets/img/logo_2x.png" width="78" height="22">
+          <img class="overlay-brand" src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" data-src-retina="/assets/img/logo.png" width="78" height="22">
           <!-- END Overlay Logo !-->
           <!-- BEGIN Overlay Close !-->
           <a href="#" class="close-icon-light overlay-close text-black fs-16">

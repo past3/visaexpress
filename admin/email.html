@@ -39,8 +39,13 @@
         document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="pages/css/windows.chrome.fix.css" />'
     }
     </script>
+    <style>
+      [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: none !important;
+      }
+    </style>
   </head>
-  <body class="fixed-header   ">
+  <body class="fixed-header ng-cloak" >
     <!-- BEGIN SIDEBPANEL-->
     <nav class="page-sidebar" data-pages="sidebar">
       <!-- BEGIN SIDEBAR MENU TOP TRAY CONTENT-->
@@ -48,7 +53,7 @@
       <!-- END SIDEBAR MENU TOP TRAY CONTENT-->
       <!-- BEGIN SIDEBAR MENU HEADER-->
       <div class="sidebar-header">
-        <img src="../assets/images/logo_b.png" alt="logo" class="brand" data-src="../assets/images/logo_b.png" data-src-retina="../assets/images/logo_b.png" width="78" height="22">
+        <img src="../assets/images/logo_white_2x.png" alt="logo" class="brand" width="78" height="22">
         <div class="sidebar-header-controls">
           <button type="button" class="btn btn-xs sidebar-slide-toggle btn-link m-l-20" data-pages-toggle="#appMenu"><i class="fa fa-angle-down fs-16"></i>
           </button>
@@ -98,18 +103,7 @@
             </a>
           </div>
         </div>
-        <!-- RIGHT SIDE -->
-        <div class="pull-right full-height visible-sm visible-xs">
-          <!-- START ACTION BAR -->
-          <div class="sm-action-bar">
-            <a href="#" class="btn-link" data-toggle="quickview" data-toggle-element="#quickview">
-              <a href="#" class="btn-link" data-toggle="quickview" data-toggle-element="#quickview">
-              <span class="icon-set menu-hambuger-plus"></span>
-            </a>
-            </a>
-          </div>
-          <!-- END ACTION BAR -->
-        </div>
+
         <!-- END MOBILE CONTROLS -->
         <div class="pull-center sm-table">
           <div class="header-inner">
@@ -117,12 +111,6 @@
             <div class="brand inline">
               <img src="../assets/images/logo_b.png" alt="logo" data-src="../assets/images/logo_b.png" data-src-retina="../assets/images/logo_b.png" width="78" height="22">
             </div>
-            <ul class="notification-list no-margin hidden-sm hidden-xs b-grey b-l b-r no-style p-l-30 p-r-20">
-              <li class="p-r-15 inline">
-
-              </li>
-
-            </ul>
           </div>
         </div>
         <div class=" pull-right">
@@ -277,47 +265,7 @@
       <!-- END PAGE CONTENT WRAPPER -->
     </div>
     <!-- END PAGE CONTAINER -->
-    <!--START QUICKVIEW -->
 
-    <!-- END QUICKVIEW-->
-    <!-- START OVERLAY -->
-    <div class="overlay hide" data-pages="search">
-      <!-- BEGIN Overlay Content !-->
-      <div class="overlay-content has-results m-t-20">
-        <!-- BEGIN Overlay Header !-->
-        <div class="container-fluid">
-          <!-- BEGIN Overlay Logo !-->
-          <img class="overlay-brand" src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo_2x.png" width="78" height="22">
-          <!-- END Overlay Logo !-->
-          <!-- BEGIN Overlay Close !-->
-          <a href="#" class="close-icon-light overlay-close text-black fs-16">
-            <i class="pg-close"></i>
-          </a>
-          <!-- END Overlay Close !-->
-        </div>
-        <!-- END Overlay Header !-->
-        <div class="container-fluid">
-          <!-- BEGIN Overlay Controls !-->
-          <input id="overlay-search" class="no-border overlay-search bg-transparent" placeholder="Search..." autocomplete="off" spellcheck="false">
-          <br>
-          <div class="inline-block">
-            <div class="checkbox right">
-              <input id="checkboxn" type="checkbox" value="1" checked="checked">
-              <label for="checkboxn"><i class="fa fa-search"></i> Search within page</label>
-            </div>
-          </div>
-          <div class="inline-block m-l-10">
-            <p class="fs-13">Press enter to search</p>
-          </div>
-          <!-- END Overlay Controls !-->
-        </div>
-        <!-- BEGIN Overlay Search Results, This part is for demo purpose, you can add anything you like !-->
-
-        <!-- END Overlay Search Results !-->
-      </div>
-      <!-- END Overlay Content !-->
-    </div>
-    <!-- END OVERLAY -->
     <!-- BEGIN VENDOR JS -->
     <script src="../assets/plugins/pace/pace.min.js" type="text/javascript"></script>
     <script src="../assets/plugins/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>

@@ -64,25 +64,26 @@ func (c *Config) SubmitPackageHandler(w http.ResponseWriter, r *http.Request) {
 
 func (c *Config) GetPackagesHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("packages Handler")
-	//u := NewsletterRepo{c.MongoSession.DB(c.MONGODB).C("packages")}
+	u := NewsletterRepo{c.MongoSession.DB(c.MONGODB).C("packages")}
 
-	//	packages, err := u.GetPackages()
-	//if err != nil {
-	//	log.Println(err)
-	//}
+	packages, err := u.GetPackages()
+	if err != nil {
+		log.Println(err)
+	}
 	//log.Println(packages)
+	/*
+		p := Newsletter{
+			Title:       "111",
+			Description: "lorem ipsum",
+			Image:       "http://placehold.it/300x300",
+		}
 
-	p := Newsletter{
-		Title:       "111",
-		Description: "lorem ipsum",
-		Image:       "http://placehold.it/300x300",
-	}
-
-	packages := []Newsletter{
-		p,
-	}
-	t := template.New("packages template")             //create a new template
-	t, err := t.ParseFiles("./frontend/packages.html") //open and parse a template text file
+		packages := []Newsletter{
+			p,
+		}
+	*/
+	t := template.New("packages template")            //create a new template
+	t, err = t.ParseFiles("./frontend/packages.html") //open and parse a template text file
 	if err != nil {
 		log.Println(err)
 	}

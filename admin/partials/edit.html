@@ -1,13 +1,31 @@
-<div class="jumbotron" data-pages="parallax">
-            <div class="container-fluid container-fixed-lg sm-p-l-20 sm-p-r-20">
-              <div class="inner">
-                <!-- START BREADCRUMB -->
 
-                <!-- END BREADCRUMB -->
+<div class="container-fluid container-fixed-lg">
 
-              </div>
+    <div class="col-md-offset-2 col-md-8">
+      <!-- START PANEL -->
+      <div class="pa3 pv3">
+        <h2 class="">
+            Add Newsletter
+        </h2>
+
+        <div class="">
+          <h5> Newsletters are seen by all club members from their dashboard</h5>
+            <div class="form-group form-group-default required">
+              <label>Title</label>
+              <input type="text" class="form-control" ng-model="data.Title" required>
             </div>
-          </div>
+
+            <div class="form-group form-group-default">
+              <label>Description</label>
+              <textarea  class="form-control" ng-model="data.Description" ></textarea>
+            </div>
+
+
+            <div class="form-group form-group-default">
+              <label>Event Date</label>
+              <input type="date" class="form-control" ng-model="data.Date" required>
+            </div>
+
 
           <div class="container-fluid container-fixed-lg">
                       <div class="row">
@@ -72,5 +90,28 @@
                           <!-- END PANEL -->
                         </div>
 
-                      </div>
-                    </div>
+
+              <div>
+                <label for="">Front Image</label>
+                <input type="file" ng-model="file"  onchange="angular.element(this).scope().newLetter(this.files[0])" />
+                <div >
+                  <a class=" dib w-25">
+                    <img src="{{f}}" class="img img-thumbnail" />
+                  </a>
+                  <div style="clear:both"></div>
+                </div>
+              </div>
+
+              <div class="pv3">
+                <button class="btn btn-info btn-lg fr" ng-click="add(data)">Update</button>
+                <md-progress-circular md-mode="indeterminate" ng-show="show == 'show'"></md-progress-circular>
+              </div>
+
+            </div>
+        </div>
+      </div>
+      <!-- END PANEL -->
+    </div>
+
+
+</div>
