@@ -17,15 +17,13 @@
 
                 <!-- timeline-block -->
 
-                <div class="timeline-block" ng-if="data.Type == '0'">
-
                 <div class="timeline-block" ng-repeat="data in result" >
 
                   <div class="timeline-point small">
                     <i class="pg-social"></i>
                   </div>
                   <!-- timeline-point -->
-                  <div class="timeline-content" ng-if="data.Type == '1'">
+                  <div class="timeline-content" ng-if="data.Type == '0'">
                     <div class="card share full-width">
                       <div class="circle" data-toggle="tooltip" title="Label" data-container="body">
                       </div>
@@ -42,24 +40,14 @@
                       </div>
                       <div class="card-content">
                         <ul class="buttons ">
-                          <li>
-                            <a href="#"><i class="fa fa-expand"></i>
-                                    </a>
-                          </li>
-                          <li>
-                            <a href="#"><i class="fa fa-heart-o"></i>
-                                    </a>
-                          </li>
+                          
                         </ul>
                         <img  ng-src="{{data.Image}}">
                       </div>
                       <div class="card-footer clearfix">
                         <div class="time"></div>
                         <ul class="reactions">
-                          <li><a href="#"> <i class="fa fa-comment-o"></i></a>
-                          </li>
-                          <li><a href="#"> <i class="fa fa-heart-o"></i></a>
-                          </li>
+
                         </ul>
                       </div>
 
@@ -71,12 +59,11 @@
                   <!-- timeline-content -->
                 </div>
                 <!-- timeline-block -->
-                <div class="timeline-block" ng-if="data.Type == '1'">
                   <div class="timeline-point warning">
                     <i class="pg-social"></i>
                   </div>
                   <!-- timeline-point -->
-                  <div class="timeline-content" ng-if="data.Type == '0'">
+                  <div class="timeline-content" ng-if="data.Type == '1'">
                     <div class="card share full-width ">
                       <div class="card-header clearfix">
                         <h5 class=" pull-left fs-12">{{data.Title}} <i class="fa fa-circle text-warning-dark fs-11"></i></h5>
