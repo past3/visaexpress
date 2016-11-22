@@ -68,6 +68,7 @@ func main() {
 	config := generateConfig()
 	defer config.MongoSession.Close()
 	commonHandlers := alice.New(context.ClearHandler, loggingHandler, recoverHandler)
+	log.Println("starting")
 	router := NewRouter()
 	router.ServeFiles("/assets/*filepath", http.Dir("assets"))
 	router.ServeFiles("/admin/*filepath", http.Dir("admin"))
@@ -137,7 +138,7 @@ func main() {
 		AllowedMethods:   []string{"GET", "POST", "DELETE"},
 		AllowCredentials: true,
 		AllowedHeaders:   []string{"Accept", "Content-Type", "X-Auth-Token", "*"},
-		Debug:            false,
+		Debug:            true,
 	}).Handler(router)
 	log.Println("serving ")
 	log.Fatal(http.ListenAndServe(":"+PORT, handler))
