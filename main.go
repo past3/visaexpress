@@ -8,7 +8,6 @@ import (
 	"github.com/gorilla/context"
 	"github.com/julienschmidt/httprouter"
 	"github.com/justinas/alice"
-	"github.com/rs/cors"
 )
 
 const (
@@ -131,13 +130,13 @@ func main() {
 
 	}
 
-	handler := cors.New(cors.Options{
+	/*	handler := cors.New(cors.Options{
 		//		AllowedOrigins:   []string{"http://localhost:3000"},
 
 		AllowedMethods:   []string{"GET", "POST", "DELETE"},
 		AllowCredentials: true,
 		Debug:            true,
-	}).Handler(router)
+	}).Handler(router)*/
 	log.Println("serving ")
-	log.Fatal(http.ListenAndServe(":"+PORT, handler))
+	log.Fatal(http.ListenAndServe(":"+PORT, router))
 }
