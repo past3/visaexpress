@@ -76,7 +76,9 @@ func main() {
 	router.Get("/admin", commonHandlers.ThenFunc(FrontAdminHandler))
 	router.Get("/login", commonHandlers.ThenFunc(LoginAdmin))
 	router.Get("/getAdminUsers", commonHandlers.ThenFunc(config.GetAdminUsersHandler))
+
 	router.Post("/newAdmin", commonHandlers.ThenFunc(config.CreateAdminHandler))
+
 	router.Post("/authAdmin", commonHandlers.ThenFunc(config.AdminAuthHandler))
 	router.Post("/upload", commonHandlers.ThenFunc(config.UploadHandler))
 	router.Get("/getLetters", commonHandlers.ThenFunc(config.GetLetterHandler))

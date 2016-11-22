@@ -34,6 +34,7 @@ type UserRepo struct {
 func (r *UserRepo) CreateAdmin(member User) error {
 	member.Pass, _ = bcrypt.GenerateFromPassword([]byte(member.Password), Cost)
 	member.Password = ""
+	log.Println(member)
 	err := r.coll.Insert(member)
 	if err != nil {
 		log.Println(err)
