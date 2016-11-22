@@ -4,11 +4,11 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"log"
-	"math/rand"
 	"net/http"
 	"strings"
 
 	"github.com/mitchellh/goamz/s3"
+	uuid "github.com/satori/go.uuid"
 
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
@@ -27,15 +27,6 @@ type Newsletter struct {
 
 type NewsletterRepo struct {
 	coll *mgo.Collection
-}
-
-func randSeq(n int) string {
-	letters := []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
-	b := make([]rune, n)
-	for i := range b {
-		b[i] = letters[rand.Intn(len(letters))]
-	}
-	return string(b)
 }
 
 func (r *NewsletterRepo) UploadLetter(nl Newsletter) error {
@@ -113,7 +104,7 @@ func (c *Config) UploadHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		meta := strings.Split(data.Image, "base64,")[0]
 		newmeta := strings.Replace(strings.Replace(meta, "data:", "", -1), ";", "", -1)
-		name := randSeq(10) + data.LetterNo
+		name := uuid.NewV4().String() + data.LetterNo
 		err = bucket.Put(name, byt, newmeta, s3.PublicReadWrite)
 		if err != nil {
 			log.Println(err)
@@ -127,7 +118,7 @@ func (c *Config) UploadHandler(w http.ResponseWriter, r *http.Request) {
 			}
 			meta := strings.Split(data.BackImage, "base64,")[0]
 			newmeta := strings.Replace(strings.Replace(meta, "data:", "", -1), ";", "", -1)
-			name := randSeq(10) + data.LetterNo + "2"
+			name := uuid.NewV4().String() + data.LetterNo + "2"
 			err = bucket.Put(name, byt, newmeta, s3.PublicReadWrite)
 			if err != nil {
 				log.Println(err)

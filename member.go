@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/mitchellh/goamz/s3"
+	uuid "github.com/satori/go.uuid"
 
 	//	"github.com/gorilla/context"
 
@@ -99,7 +100,7 @@ func (c *Config) CreateHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		meta := strings.Split(member.Image, "base64,")[0]
 		newmeta := strings.Replace(strings.Replace(meta, "data:", "", -1), ";", "", -1)
-		name := randSeq(10)
+		name := uuid.NewV4().String()
 		err = bucket.Put(name, byt, newmeta, s3.PublicReadWrite)
 		if err != nil {
 			log.Println(err)

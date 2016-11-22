@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/mitchellh/goamz/s3"
+	uuid "github.com/satori/go.uuid"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -51,7 +52,7 @@ func (c *Config) UploadGalleryHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	meta := strings.Split(data.Image, "base64,")[0]
 	newmeta := strings.Replace(strings.Replace(meta, "data:", "", -1), ";", "", -1)
-	name := randSeq(10) + "" + randSeq(10)
+	name := uuid.NewV4().String()
 	err = bucket.Put(name, byt, newmeta, s3.PublicReadWrite)
 	if err != nil {
 		log.Println(err)

@@ -34,7 +34,8 @@ type Config struct {
 
 func generateConfig() (config Config) {
 
-	config.MONGOSERVER = os.Getenv("MONGODB_URI")
+	//config.MONGOSERVER = os.Getenv("MONGODB_URI")
+	config.MONGOSERVER = os.Getenv("MONGO_URL")
 
 	if config.MONGOSERVER == "" {
 		log.Println("No mongo server address set, resulting to default address")
