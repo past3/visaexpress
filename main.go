@@ -137,7 +137,7 @@ func main() {
 
 		AllowedMethods:   []string{"GET", "POST", "DELETE"},
 		AllowCredentials: true,
-		AllowedHeaders:   []string{"Accept", "Content-Type", "X-Auth-Token", "*"},
+		AllowedHeaders:   []string{"*"},
 		Debug:            true,
 	}).Handler(router)
 	log.Println("serving ")
