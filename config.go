@@ -64,7 +64,8 @@ func generateConfig() (config Config) {
 	AWSBucket := os.Getenv("AWSBucket")
 	if AWSBucket == "" {
 		log.Println("No AWSBucket set, resulting to default")
-		AWSBucket = "yellowpagesng"
+		//AWSBucket = "yellowpagesng"
+		AWSBucket = "visaexpress"
 	}
 	log.Println("AWS Bucket is ", AWSBucket)
 
