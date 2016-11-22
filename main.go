@@ -133,11 +133,9 @@ func main() {
 
 	handler := cors.New(cors.Options{
 		//		AllowedOrigins:   []string{"http://localhost:3000"},
-		AllowedOrigins: []string{"*"},
 
 		AllowedMethods:   []string{"GET", "POST", "DELETE"},
 		AllowCredentials: true,
-		AllowedHeaders:   []string{"*"},
 		Debug:            true,
 	}).Handler(router)
 	log.Println("serving ")
