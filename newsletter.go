@@ -15,14 +15,14 @@ import (
 )
 
 type Newsletter struct {
-	ID          bson.ObjectId `json:"id,omitempty" bson:"_id,omitempty"`
-	Title       string        `bson:"title"`
-	Description string        `bson:"description"`
-	Date        string        `bson:"date"`
-	Image       string        `bson:"image"`
-	BackImage   string        `bson:"backimage"`
-	LetterNo    string        `bson:"letterno"`
-	Type        string        `bson:"type"`
+	//ID          bson.ObjectId `json:"id,omitempty" bson:"_id,omitempty"`
+	Title       string `bson:"title"`
+	Description string `bson:"description"`
+	Date        string `bson:"date"`
+	Image       string `bson:"image"`
+	BackImage   string `bson:"backimage"`
+	LetterNo    string `bson:"letterno"`
+	Type        string `bson:"type"`
 }
 
 type NewsletterRepo struct {

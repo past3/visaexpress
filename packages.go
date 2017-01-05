@@ -25,7 +25,7 @@ func (r *NewsletterRepo) UploadPackage(nl Newsletter) error {
 
 func (r *NewsletterRepo) GetPackages() ([]Newsletter, error) {
 	data := []Newsletter{}
-	err := r.coll.Find(bson.M{}).All(&data)
+	err := r.coll.Find(bson.M{}).Sort("-date").All(&data)
 	if err != nil {
 		log.Println(err)
 		return data, err
